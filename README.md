@@ -70,5 +70,3 @@ The converter creates:
 ## License
 
 Free to use and modify
-
-![App Icon](https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/pdf_flipbook.png)
