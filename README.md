@@ -6,11 +6,10 @@ Creates HTML flipbook from PDF - really cool
 
 ![Example Output](https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/pdf-to-flipbook-example.gif)
 
-![macOS App](https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/pdf-to-flipbook-macosx.png)
 
 ## What is this?
 
-This is a native macOS application that converts any PDF document into an interactive HTML flipbook with realistic page-turning effects. Just drag and drop a PDF, click convert, and you get a beautiful browser-based flipbook that works on desktop and mobile devices.
+This is an application that converts any PDF document into an interactive HTML flipbook with realistic page-turning effects. Just drag and drop a PDF, click convert, and you get a beautiful browser-based flipbook that works on desktop and mobile devices.
 
 ## Features
 
@@ -24,7 +23,12 @@ This is a native macOS application that converts any PDF document into an intera
 - Dual-page view in landscape, single-page in portrait
 - Native macOS app with custom icon
 
-## Installation
+## Installation Ubuntu
+```
+curl -o "pdf_to_flipbook_install_do.sh" "https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/pdf_to_flipbook_install_do.sh" && chmod +x "pdf_to_flipbook_install_do.sh" && sudo ./"pdf_to_flipbook_install_do.sh"
+```
+
+## Installation MACOSX
 
 1. Run the `One-Click-Install.command` script
 2. The app will be installed to `~/Applications/`
@@ -70,3 +74,4 @@ The converter creates:
 ## License
 
 Free to use and modify
+![macOS App](https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/pdf-to-flipbook-macosx.png)
