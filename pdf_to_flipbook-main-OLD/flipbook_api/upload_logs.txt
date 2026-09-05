@@ -1,0 +1,328 @@
+[2026-06-07 00:14:58] 📭 No new PDF files found to process
+[2026-06-07 00:15:25] 
+================================================================================
+[2026-06-07 00:15:25] 📚 FOUND 1 PDF(s) to process
+[2026-06-07 00:15:25] ================================================================================
+
+[2026-06-07 00:15:25] 
+--- Processing: 3D Game Programming All In One.pdf ---
+[2026-06-07 00:15:25] 📤 Uploading: 3D Game Programming All In One.pdf (17.1 MB)
+[2026-06-07 00:15:32] ✅ UPLOADED: 3D Game Programming All In One.pdf -> Job ID: 5
+[2026-06-07 00:15:32] 📁 Moved: 3D Game Programming All In One.pdf -> uploaded/
+[2026-06-07 00:15:32] 
+================================================================================
+[2026-06-07 00:15:32] 📊 UPLOAD SUMMARY: 1/1 files uploaded
+[2026-06-07 00:15:32] ================================================================================
+[2026-06-07 00:15:32] 
+⏳ WAITING FOR CONVERSIONS TO COMPLETE...
+
+[2026-06-07 00:15:32]   ⏳ 3D Game Programming All In One.pdf: 10% - uploaded
+[2026-06-07 00:15:35]   ⏳ 3D Game Programming All In One.pdf: 20% - Page 2/849
+[2026-06-07 00:15:43]   ⏳ 3D Game Programming All In One.pdf: 21% - Page 13/849
+[2026-06-07 00:15:51]   ⏳ 3D Game Programming All In One.pdf: 22% - Page 25/849
+[2026-06-07 00:16:03]   ⏳ 3D Game Programming All In One.pdf: 23% - Page 37/849
+[2026-06-07 00:16:19]   ⏳ 3D Game Programming All In One.pdf: 24% - Page 50/849
+[2026-06-07 00:16:31]   ⏳ 3D Game Programming All In One.pdf: 25% - Page 61/849
+[2026-06-07 00:16:43]   ⏳ 3D Game Programming All In One.pdf: 26% - Page 73/849
+[2026-06-07 00:16:55]   ⏳ 3D Game Programming All In One.pdf: 27% - Page 85/849
+[2026-06-07 00:17:07]   ⏳ 3D Game Programming All In One.pdf: 28% - Page 98/849
+[2026-06-07 00:17:19]   ⏳ 3D Game Programming All In One.pdf: 29% - Page 112/849
+[2026-06-07 00:17:27]   ⏳ 3D Game Programming All In One.pdf: 30% - Page 122/849
+[2026-06-07 00:17:42]   ⏳ 3D Game Programming All In One.pdf: 31% - Page 135/849
+[2026-06-07 00:17:52]   ⏳ 3D Game Programming All In One.pdf: 32% - Page 146/849
+[2026-06-07 00:18:04]   ⏳ 3D Game Programming All In One.pdf: 33% - Page 159/849
+[2026-06-07 00:18:14]   ⏳ 3D Game Programming All In One.pdf: 34% - Page 171/849
+[2026-06-07 00:18:24]   ⏳ 3D Game Programming All In One.pdf: 35% - Page 184/849
+[2026-06-07 00:18:34]   ⏳ 3D Game Programming All In One.pdf: 36% - Page 195/849
+[2026-06-07 00:18:44]   ⏳ 3D Game Programming All In One.pdf: 37% - Page 207/849
+[2026-06-07 00:18:54]   ⏳ 3D Game Programming All In One.pdf: 38% - Page 219/849
+[2026-06-07 00:19:06]   ⏳ 3D Game Programming All In One.pdf: 39% - Page 232/849
+[2026-06-07 00:19:16]   ⏳ 3D Game Programming All In One.pdf: 40% - Page 244/849
+[2026-06-07 00:19:26]   ⏳ 3D Game Programming All In One.pdf: 41% - Page 257/849
+[2026-06-07 00:19:36]   ⏳ 3D Game Programming All In One.pdf: 42% - Page 269/849
+[2026-06-07 00:19:45]   ⏳ 3D Game Programming All In One.pdf: 43% - Page 279/849
+[2026-06-07 00:19:55]   ⏳ 3D Game Programming All In One.pdf: 44% - Page 292/849
+[2026-06-07 00:20:07]   ⏳ 3D Game Programming All In One.pdf: 45% - Page 305/849
+[2026-06-07 00:20:21]   ⏳ 3D Game Programming All In One.pdf: 46% - Page 316/849
+[2026-06-07 00:20:35]   ⏳ 3D Game Programming All In One.pdf: 47% - Page 329/849
+[2026-06-07 00:20:39]   ⏳ 3D Game Programming All In One.pdf: 20% - Page 2/849
+[2026-06-07 00:20:41]   ⏳ 3D Game Programming All In One.pdf: 47% - Page 334/849
+[2026-06-07 00:20:45]   ⏳ 3D Game Programming All In One.pdf: 20% - Page 7/849
+[2026-06-07 00:20:49]   ⏳ 3D Game Programming All In One.pdf: 48% - Page 341/849
+[2026-06-07 00:20:51]   ⏳ 3D Game Programming All In One.pdf: 21% - Page 15/849
+[2026-06-07 00:20:55]   ⏳ 3D Game Programming All In One.pdf: 48% - Page 346/849
+[2026-06-07 00:20:57]   ⏳ 3D Game Programming All In One.pdf: 21% - Page 22/849
+[2026-06-07 00:20:59]   ⏳ 3D Game Programming All In One.pdf: 48% - Page 349/849
+[2026-06-07 00:21:01]   ⏳ 3D Game Programming All In One.pdf: 22% - Page 26/849
+[2026-06-07 00:21:07]   ⏳ 3D Game Programming All In One.pdf: 49% - Page 355/849
+[2026-06-07 00:21:15]   ⏳ 3D Game Programming All In One.pdf: 23% - Page 38/849
+[2026-06-07 00:21:20]   ⏳ 3D Game Programming All In One.pdf: 49% - Page 362/849
+[2026-06-07 00:21:22]   ⏳ 3D Game Programming All In One.pdf: 50% - Page 364/849
+[2026-06-07 00:21:24]   ⏳ 3D Game Programming All In One.pdf: 23% - Page 42/849
+[2026-06-07 00:21:28]   ⏳ 3D Game Programming All In One.pdf: 50% - Page 369/849
+[2026-06-07 00:21:30]   ⏳ 3D Game Programming All In One.pdf: 23% - Page 47/849
+[2026-06-07 00:21:34]   ⏳ 3D Game Programming All In One.pdf: 50% - Page 373/849
+[2026-06-07 00:21:38]   ⏳ 3D Game Programming All In One.pdf: 51% - Page 377/849
+[2026-06-07 00:21:40]   ⏳ 3D Game Programming All In One.pdf: 24% - Page 54/849
+[2026-06-07 00:21:42]   ⏳ 3D Game Programming All In One.pdf: 51% - Page 380/849
+[2026-06-07 00:21:44]   ⏳ 3D Game Programming All In One.pdf: 24% - Page 57/849
+[2026-06-07 00:21:46]   ⏳ 3D Game Programming All In One.pdf: 51% - Page 384/849
+[2026-06-07 00:21:52]   ⏳ 3D Game Programming All In One.pdf: 25% - Page 64/849
+[2026-06-07 00:21:58]   ⏳ 3D Game Programming All In One.pdf: 52% - Page 392/849
+[2026-06-07 00:22:02]   ⏳ 3D Game Programming All In One.pdf: 25% - Page 72/849
+[2026-06-07 00:22:04]   ⏳ 3D Game Programming All In One.pdf: 26% - Page 73/849
+[2026-06-07 00:22:06]   ⏳ 3D Game Programming All In One.pdf: 52% - Page 397/849
+[2026-06-07 00:22:08]   ⏳ 3D Game Programming All In One.pdf: 26% - Page 76/849
+[2026-06-07 00:22:12]   ⏳ 3D Game Programming All In One.pdf: 53% - Page 402/849
+[2026-06-07 00:22:14]   ⏳ 3D Game Programming All In One.pdf: 26% - Page 81/849
+[2026-06-07 00:22:20]   ⏳ 3D Game Programming All In One.pdf: 27% - Page 86/849
+[2026-06-07 00:22:22]   ⏳ 3D Game Programming All In One.pdf: 53% - Page 408/849
+[2026-06-07 00:22:24]   ⏳ 3D Game Programming All In One.pdf: 27% - Page 89/849
+[2026-06-07 00:22:34]   ⏳ 3D Game Programming All In One.pdf: 28% - Page 98/849
+[2026-06-07 00:22:36]   ⏳ 3D Game Programming All In One.pdf: 54% - Page 418/849
+[2026-06-07 00:22:38]   ⏳ 3D Game Programming All In One.pdf: 28% - Page 102/849
+[2026-06-07 00:22:46]   ⏳ 3D Game Programming All In One.pdf: 55% - Page 425/849
+[2026-06-07 00:22:48]   ⏳ 3D Game Programming All In One.pdf: 29% - Page 112/849
+[2026-06-07 00:22:58]   ⏳ 3D Game Programming All In One.pdf: 55% - Page 435/849
+[2026-06-07 00:23:00]   ⏳ 3D Game Programming All In One.pdf: 56% - Page 437/849
+[2026-06-07 00:23:06]   ⏳ 3D Game Programming All In One.pdf: 30% - Page 128/849
+[2026-06-07 00:23:08]   ⏳ 3D Game Programming All In One.pdf: 56% - Page 443/849
+[2026-06-07 00:23:11]   ⏳ 3D Game Programming All In One.pdf: 30% - Page 131/849
+[2026-06-07 00:23:13]   ⏳ 3D Game Programming All In One.pdf: 56% - Page 446/849
+[2026-06-07 00:23:15]   ⏳ 3D Game Programming All In One.pdf: 31% - Page 134/849
+[2026-06-07 00:23:19]   ⏳ 3D Game Programming All In One.pdf: 57% - Page 451/849
+[2026-06-07 00:23:21]   ⏳ 3D Game Programming All In One.pdf: 31% - Page 138/849
+[2026-06-07 00:23:31]   ⏳ 3D Game Programming All In One.pdf: 32% - Page 147/849
+[2026-06-07 00:23:37]   ⏳ 3D Game Programming All In One.pdf: 58% - Page 463/849
+[2026-06-07 00:23:39]   ⏳ 3D Game Programming All In One.pdf: 32% - Page 155/849
+[2026-06-07 00:23:41]   ⏳ 3D Game Programming All In One.pdf: 58% - Page 466/849
+[2026-06-07 00:23:43]   ⏳ 3D Game Programming All In One.pdf: 33% - Page 159/849
+[2026-06-07 00:23:47]   ⏳ 3D Game Programming All In One.pdf: 58% - Page 470/849
+[2026-06-07 00:23:49]   ⏳ 3D Game Programming All In One.pdf: 33% - Page 164/849
+[2026-06-07 00:23:51]   ⏳ 3D Game Programming All In One.pdf: 58% - Page 473/849
+[2026-06-07 00:23:53]   ⏳ 3D Game Programming All In One.pdf: 33% - Page 168/849
+[2026-06-07 00:23:55]   ⏳ 3D Game Programming All In One.pdf: 34% - Page 171/849
+[2026-06-07 00:23:57]   ⏳ 3D Game Programming All In One.pdf: 59% - Page 477/849
+[2026-06-07 00:23:59]   ⏳ 3D Game Programming All In One.pdf: 34% - Page 174/849
+[2026-06-07 00:24:01]   ⏳ 3D Game Programming All In One.pdf: 59% - Page 480/849
+[2026-06-07 00:24:03]   ⏳ 3D Game Programming All In One.pdf: 34% - Page 178/849
+[2026-06-07 00:24:07]   ⏳ 3D Game Programming All In One.pdf: 35% - Page 183/849
+[2026-06-07 00:24:11]   ⏳ 3D Game Programming All In One.pdf: 60% - Page 487/849
+[2026-06-07 00:24:15]   ⏳ 3D Game Programming All In One.pdf: 35% - Page 190/849
+[2026-06-07 00:24:21]   ⏳ 3D Game Programming All In One.pdf: 36% - Page 196/849
+[2026-06-07 00:24:23]   ⏳ 3D Game Programming All In One.pdf: 60% - Page 496/849
+[2026-06-07 00:24:25]   ⏳ 3D Game Programming All In One.pdf: 61% - Page 499/849
+[2026-06-07 00:24:27]   ⏳ 3D Game Programming All In One.pdf: 36% - Page 202/849
+[2026-06-07 00:24:33]   ⏳ 3D Game Programming All In One.pdf: 37% - Page 208/849
+[2026-06-07 00:24:37]   ⏳ 3D Game Programming All In One.pdf: 61% - Page 507/849
+[2026-06-07 00:24:39]   ⏳ 3D Game Programming All In One.pdf: 37% - Page 214/849
+[2026-06-07 00:24:45]   ⏳ 3D Game Programming All In One.pdf: 62% - Page 512/849
+[2026-06-07 00:24:47]   ⏳ 3D Game Programming All In One.pdf: 38% - Page 221/849
+[2026-06-07 00:24:49]   ⏳ 3D Game Programming All In One.pdf: 62% - Page 515/849
+[2026-06-07 00:24:51]   ⏳ 3D Game Programming All In One.pdf: 38% - Page 226/849
+[2026-06-07 00:24:55]   ⏳ 3D Game Programming All In One.pdf: 62% - Page 519/849
+[2026-06-07 00:24:57]   ⏳ 3D Game Programming All In One.pdf: 39% - Page 233/849
+[2026-06-07 00:25:02]   ⏳ 3D Game Programming All In One.pdf: 63% - Page 522/849
+[2026-06-07 00:25:12]   ⏳ 3D Game Programming All In One.pdf: 40% - Page 245/849
+[2026-06-07 00:25:16]   ⏳ 3D Game Programming All In One.pdf: 63% - Page 533/849
+[2026-06-07 00:25:18]   ⏳ 3D Game Programming All In One.pdf: 40% - Page 251/849
+[2026-06-07 00:25:20]   ⏳ 3D Game Programming All In One.pdf: 64% - Page 536/849
+[2026-06-07 00:25:22]   ⏳ 3D Game Programming All In One.pdf: 41% - Page 255/849
+[2026-06-07 00:25:24]   ⏳ 3D Game Programming All In One.pdf: 64% - Page 539/849
+[2026-06-07 00:25:26]   ⏳ 3D Game Programming All In One.pdf: 41% - Page 260/849
+[2026-06-07 00:25:32]   ⏳ 3D Game Programming All In One.pdf: 64% - Page 544/849
+[2026-06-07 00:25:34]   ⏰ 3D Game Programming All In One.pdf: Timeout after 600 seconds
+[2026-06-07 00:25:34] 
+❌ FAILED: 3D Game Programming All In One.pdf
+[2026-06-07 00:25:34] 
+================================================================================
+[2026-06-07 00:25:34] 📊 FINAL REPORT
+[2026-06-07 00:25:34] ================================================================================
+[2026-06-07 00:25:34] Generated: 2026-06-07 00:25:34
+[2026-06-07 00:25:34] 
+[2026-06-07 00:25:34] 📈 STATISTICS:
+[2026-06-07 00:25:34]    Total files: 1
+[2026-06-07 00:25:34]    ✅ Completed: 0
+[2026-06-07 00:25:34]    📤 Uploaded (processing): 0
+[2026-06-07 00:25:34]    ❌ Failed: 1
+[2026-06-07 00:25:34] 
+[2026-06-07 00:25:34] 
+❌ FAILED:
+[2026-06-07 00:25:34]    • 3D Game Programming All In One.pdf: Conversion failed or timed out
+[2026-06-07 00:25:34] 
+================================================================================
+[2026-06-07 00:25:34] 📁 Uploaded files moved to: /Users/gabrielmajorsky/Documents/__________win10dev.xyz/igiteam.github.com/appgenesys_web_apps_by_gabz/winejs_video_game_magazines/pdf_to_flipbook/flipbook_api/uploaded/
+[2026-06-07 00:25:34] 📝 Full log saved to: upload_logs.txt
+[2026-06-07 00:25:34] ================================================================================
+
+[2026-06-08 18:18:41] 
+================================================================================
+[2026-06-08 18:18:41] 📚 FOUND 1 PDF(s) to process
+[2026-06-08 18:18:41] ================================================================================
+
+[2026-06-08 18:18:41] 
+--- Processing: 3D Game Programming All In One.pdf ---
+[2026-06-08 18:18:41] 📤 Uploading: 3D Game Programming All In One.pdf (17.1 MB)
+[2026-06-08 18:18:49] ✅ UPLOADED: 3D Game Programming All In One.pdf -> Job ID: 2
+[2026-06-08 18:18:49] 📁 Moved: 3D Game Programming All In One.pdf -> uploaded/
+[2026-06-08 18:18:49] 
+================================================================================
+[2026-06-08 18:18:49] 📊 UPLOAD SUMMARY: 1/1 files uploaded
+[2026-06-08 18:18:49] ================================================================================
+[2026-06-08 18:18:49] 
+⏳ WAITING FOR CONVERSIONS TO COMPLETE...
+
+[2026-06-08 18:18:49]   ⏳ 3D Game Programming All In One.pdf: 10% - uploaded
+[2026-06-08 18:18:51]   ⏳ 3D Game Programming All In One.pdf: 20% - Page 6/849
+[2026-06-08 18:18:53]   ⏳ 3D Game Programming All In One.pdf: 21% - Page 14/849
+[2026-06-08 18:18:57]   ⏳ 3D Game Programming All In One.pdf: 22% - Page 28/849
+[2026-06-08 18:19:01]   ⏳ 3D Game Programming All In One.pdf: 23% - Page 38/849
+[2026-06-08 18:19:07]   ⏳ 3D Game Programming All In One.pdf: 24% - Page 49/849
+[2026-06-08 18:19:13]   ⏳ 3D Game Programming All In One.pdf: 25% - Page 64/849
+[2026-06-08 18:19:17]   ⏳ 3D Game Programming All In One.pdf: 26% - Page 73/849
+[2026-06-08 18:19:23]   ⏳ 3D Game Programming All In One.pdf: 27% - Page 89/849
+[2026-06-08 18:19:27]   ⏳ 3D Game Programming All In One.pdf: 28% - Page 100/849
+[2026-06-08 18:19:31]   ⏳ 3D Game Programming All In One.pdf: 29% - Page 113/849
+[2026-06-08 18:19:35]   ⏳ 3D Game Programming All In One.pdf: 30% - Page 125/849
+[2026-06-08 18:19:39]   ⏳ 3D Game Programming All In One.pdf: 31% - Page 134/849
+[2026-06-08 18:19:45]   ⏳ 3D Game Programming All In One.pdf: 32% - Page 151/849
+[2026-06-08 18:19:49]   ⏳ 3D Game Programming All In One.pdf: 33% - Page 162/849
+[2026-06-08 18:19:53]   ⏳ 3D Game Programming All In One.pdf: 34% - Page 175/849
+[2026-06-08 18:19:55]   ⏳ 3D Game Programming All In One.pdf: 35% - Page 182/849
+[2026-06-08 18:20:02]   ⏳ 3D Game Programming All In One.pdf: 36% - Page 198/849
+[2026-06-08 18:20:06]   ⏳ 3D Game Programming All In One.pdf: 37% - Page 209/849
+[2026-06-08 18:20:10]   ⏳ 3D Game Programming All In One.pdf: 38% - Page 220/849
+[2026-06-08 18:20:14]   ⏳ 3D Game Programming All In One.pdf: 39% - Page 232/849
+[2026-06-08 18:20:18]   ⏳ 3D Game Programming All In One.pdf: 40% - Page 243/849
+[2026-06-08 18:20:22]   ⏳ 3D Game Programming All In One.pdf: 41% - Page 256/849
+[2026-06-08 18:20:26]   ⏳ 3D Game Programming All In One.pdf: 42% - Page 268/849
+[2026-06-08 18:20:30]   ⏳ 3D Game Programming All In One.pdf: 43% - Page 281/849
+[2026-06-08 18:20:34]   ⏳ 3D Game Programming All In One.pdf: 44% - Page 293/849
+[2026-06-08 18:20:38]   ⏳ 3D Game Programming All In One.pdf: 45% - Page 306/849
+[2026-06-08 18:20:44]   ⏳ 3D Game Programming All In One.pdf: 46% - Page 318/849
+[2026-06-08 18:20:50]   ⏳ 3D Game Programming All In One.pdf: 47% - Page 332/849
+[2026-06-08 18:20:54]   ⏳ 3D Game Programming All In One.pdf: 48% - Page 343/849
+[2026-06-08 18:20:58]   ⏳ 3D Game Programming All In One.pdf: 49% - Page 353/849
+[2026-06-08 18:21:04]   ⏳ 3D Game Programming All In One.pdf: 50% - Page 365/849
+[2026-06-08 18:21:10]   ⏳ 3D Game Programming All In One.pdf: 51% - Page 379/849
+[2026-06-08 18:21:14]   ⏳ 3D Game Programming All In One.pdf: 52% - Page 389/849
+[2026-06-08 18:21:20]   ⏳ 3D Game Programming All In One.pdf: 53% - Page 403/849
+[2026-06-08 18:21:26]   ⏳ 3D Game Programming All In One.pdf: 54% - Page 415/849
+[2026-06-08 18:21:32]   ⏳ 3D Game Programming All In One.pdf: 55% - Page 430/849
+[2026-06-08 18:21:36]   ⏳ 3D Game Programming All In One.pdf: 56% - Page 440/849
+[2026-06-08 18:21:40]   ⏳ 3D Game Programming All In One.pdf: 57% - Page 451/849
+[2026-06-08 18:21:46]   ⏳ 3D Game Programming All In One.pdf: 58% - Page 463/849
+[2026-06-08 18:21:52]   ⏳ 3D Game Programming All In One.pdf: 59% - Page 476/849
+[2026-06-08 18:21:58]   ⏳ 3D Game Programming All In One.pdf: 60% - Page 490/849
+[2026-06-08 18:22:03]   ⏳ 3D Game Programming All In One.pdf: 61% - Page 500/849
+[2026-06-08 18:22:09]   ⏳ 3D Game Programming All In One.pdf: 62% - Page 513/849
+[2026-06-08 18:22:15]   ⏳ 3D Game Programming All In One.pdf: 63% - Page 524/849
+[2026-06-08 18:22:19]   ⏳ 3D Game Programming All In One.pdf: 64% - Page 534/849
+[2026-06-08 18:22:25]   ⏳ 3D Game Programming All In One.pdf: 65% - Page 547/849
+[2026-06-08 18:22:31]   ⏳ 3D Game Programming All In One.pdf: 66% - Page 562/849
+[2026-06-08 18:22:35]   ⏳ 3D Game Programming All In One.pdf: 67% - Page 573/849
+[2026-06-08 18:22:39]   ⏳ 3D Game Programming All In One.pdf: 68% - Page 583/849
+[2026-06-08 18:22:43]   ⏳ 3D Game Programming All In One.pdf: 69% - Page 596/849
+[2026-06-08 18:22:49]   ⏳ 3D Game Programming All In One.pdf: 70% - Page 612/849
+[2026-06-08 18:22:53]   ⏳ 3D Game Programming All In One.pdf: 71% - Page 622/849
+[2026-06-08 18:22:57]   ⏳ 3D Game Programming All In One.pdf: 72% - Page 632/849
+[2026-06-08 18:23:03]   ⏳ 3D Game Programming All In One.pdf: 73% - Page 645/849
+[2026-06-08 18:23:07]   ⏳ 3D Game Programming All In One.pdf: 74% - Page 655/849
+[2026-06-08 18:23:13]   ⏳ 3D Game Programming All In One.pdf: 75% - Page 673/849
+[2026-06-08 18:23:17]   ⏳ 3D Game Programming All In One.pdf: 76% - Page 684/849
+[2026-06-08 18:23:21]   ⏳ 3D Game Programming All In One.pdf: 77% - Page 695/849
+[2026-06-08 18:23:25]   ⏳ 3D Game Programming All In One.pdf: 78% - Page 709/849
+[2026-06-08 18:23:27]   ⏳ 3D Game Programming All In One.pdf: 79% - Page 716/849
+[2026-06-08 18:23:31]   ⏳ 3D Game Programming All In One.pdf: 80% - Page 732/849
+[2026-06-08 18:23:35]   ⏳ 3D Game Programming All In One.pdf: 81% - Page 747/849
+[2026-06-08 18:23:37]   ⏳ 3D Game Programming All In One.pdf: 82% - Page 754/849
+[2026-06-08 18:23:42]   ⏳ 3D Game Programming All In One.pdf: 83% - Page 768/849
+[2026-06-08 18:23:46]   ⏳ 3D Game Programming All In One.pdf: 84% - Page 784/849
+[2026-06-08 18:23:48]   ⏳ 3D Game Programming All In One.pdf: 85% - Page 790/849
+[2026-06-08 18:23:52]   ⏳ 3D Game Programming All In One.pdf: 86% - Page 801/849
+[2026-06-08 18:23:58]   ⏳ 3D Game Programming All In One.pdf: 21% - Page 13/849
+[2026-06-08 18:24:02]   ⏳ 3D Game Programming All In One.pdf: 22% - Page 26/849
+[2026-06-08 18:24:06]   ⏳ 3D Game Programming All In One.pdf: 88% - Page 834/849
+[2026-06-08 18:24:08]   ⏳ 3D Game Programming All In One.pdf: 23% - Page 40/849
+[2026-06-08 18:24:14]   ⏳ 3D Game Programming All In One.pdf: 24% - Page 53/849
+[2026-06-08 18:24:18]   ⏳ 3D Game Programming All In One.pdf: 25% - Page 62/849
+[2026-06-08 18:24:24]   ⏳ 3D Game Programming All In One.pdf: 26% - Page 76/849
+[2026-06-08 18:24:26]   ✅ 3D Game Programming All In One.pdf: COMPLETE!
+[2026-06-08 18:24:26] 
+✅ COMPLETED: 3D Game Programming All In One.pdf
+[2026-06-08 18:24:26]    📖 Flipbook: /output/flipbook_5b3f702914784057eb9a2bb25bd31601/3D_Game_Programming_All_In_One_flipbook.html
+[2026-06-08 18:24:26]    📦 ZIP: /output/flipbook_5b3f702914784057eb9a2bb25bd31601.zip
+[2026-06-08 18:24:26]    📄 Pages: 849
+[2026-06-08 18:24:26] 
+================================================================================
+[2026-06-08 18:24:26] 📊 FINAL REPORT
+[2026-06-08 18:24:26] ================================================================================
+[2026-06-08 18:24:26] Generated: 2026-06-08 18:24:26
+[2026-06-08 18:24:26] 
+[2026-06-08 18:24:26] 📈 STATISTICS:
+[2026-06-08 18:24:26]    Total files: 1
+[2026-06-08 18:24:26]    ✅ Completed: 1
+[2026-06-08 18:24:26]    📤 Uploaded (processing): 0
+[2026-06-08 18:24:26]    ❌ Failed: 0
+[2026-06-08 18:24:26] 
+[2026-06-08 18:24:26] ✅ COMPLETED CONVERSIONS:
+[2026-06-08 18:24:26]    • 3D Game Programming All In One.pdf
+[2026-06-08 18:24:26]      📖 /output/flipbook_5b3f702914784057eb9a2bb25bd31601/3D_Game_Programming_All_In_One_flipbook.html
+[2026-06-08 18:24:26]      📦 /output/flipbook_5b3f702914784057eb9a2bb25bd31601.zip
+[2026-06-08 18:24:26]      📄 849 pages
+[2026-06-08 18:24:26] 
+================================================================================
+[2026-06-08 18:24:26] 📁 Uploaded files moved to: /Users/gabrielmajorsky/Documents/__________win10dev.xyz/igiteam.github.com/appgenesys_web_apps_by_gabz/winejs_video_game_magazines/pdf_to_flipbook/flipbook_api/uploaded/
+[2026-06-08 18:24:26] 📝 Full log saved to: upload_logs.txt
+[2026-06-08 18:24:26] ================================================================================
+
+[2026-06-08 18:51:53] 
+================================================================================
+[2026-06-08 18:51:53] 📚 FOUND 1 PDF(s) to process
+[2026-06-08 18:51:53] ================================================================================
+
+[2026-06-08 18:51:53] 
+--- Processing: 02 - Spider-Man - Shadow of The Green Goblin 001 (2025).pdf ---
+[2026-06-08 18:51:53] 📤 Uploading: 02 - Spider-Man - Shadow of The Green Goblin 001 (2025).pdf (21.1 MB)
+[2026-06-08 18:52:04] ✅ UPLOADED: 02 - Spider-Man - Shadow of The Green Goblin 001 (2025).pdf -> Job ID: 6
+[2026-06-08 18:52:04] 📁 Moved: 02 - Spider-Man - Shadow of The Green Goblin 001 (2025).pdf -> uploaded/
+[2026-06-08 18:52:04] 
+================================================================================
+[2026-06-08 18:52:04] 📊 UPLOAD SUMMARY: 1/1 files uploaded
+[2026-06-08 18:52:04] ================================================================================
+[2026-06-08 18:52:04] 
+⏳ WAITING FOR CONVERSIONS TO COMPLETE...
+
+[2026-06-08 18:52:04]   ⏳ 02 - Spider-Man - Shadow of The Green Goblin 001 (2025).pdf: 10% - uploaded
+[2026-06-08 18:52:06]   ⏳ 02 - Spider-Man - Shadow of The Green Goblin 001 (2025).pdf: 20% - Page 1/131
+[2026-06-08 18:53:19]   ⏳ 02 - Spider-Man - Shadow of The Green Goblin 001 (2025).pdf: 21% - Page 2/131
+[2026-06-08 18:55:48]   ⏳ 02 - Spider-Man - Shadow of The Green Goblin 001 (2025).pdf: 22% - Page 4/131
+[2026-06-08 18:57:09]   ⏳ 02 - Spider-Man - Shadow of The Green Goblin 001 (2025).pdf: 20% - Page 1/131
+[2026-06-08 18:58:38]   ⏳ 02 - Spider-Man - Shadow of The Green Goblin 001 (2025).pdf: 22% - Page 5/131
+[2026-06-08 18:59:01]   ⏳ 02 - Spider-Man - Shadow of The Green Goblin 001 (2025).pdf: 21% - Page 2/131
+[2026-06-08 19:00:05]   ⏳ 02 - Spider-Man - Shadow of The Green Goblin 001 (2025).pdf: 23% - Page 6/131
+[2026-06-08 19:00:43]   ⏳ 02 - Spider-Man - Shadow of The Green Goblin 001 (2025).pdf: 21% - Page 3/131
+[2026-06-08 19:02:04]   ⏰ 02 - Spider-Man - Shadow of The Green Goblin 001 (2025).pdf: Timeout after 600 seconds
+[2026-06-08 19:02:04] 
+❌ FAILED: 02 - Spider-Man - Shadow of The Green Goblin 001 (2025).pdf
+[2026-06-08 19:02:04] 
+================================================================================
+[2026-06-08 19:02:04] 📊 FINAL REPORT
+[2026-06-08 19:02:04] ================================================================================
+[2026-06-08 19:02:04] Generated: 2026-06-08 19:02:04
+[2026-06-08 19:02:04] 
+[2026-06-08 19:02:04] 📈 STATISTICS:
+[2026-06-08 19:02:04]    Total files: 1
+[2026-06-08 19:02:04]    ✅ Completed: 0
+[2026-06-08 19:02:04]    📤 Uploaded (processing): 0
+[2026-06-08 19:02:04]    ❌ Failed: 1
+[2026-06-08 19:02:04] 
+[2026-06-08 19:02:04] 
+❌ FAILED:
+[2026-06-08 19:02:04]    • 02 - Spider-Man - Shadow of The Green Goblin 001 (2025).pdf: Conversion failed or timed out
+[2026-06-08 19:02:04] 
+================================================================================
+[2026-06-08 19:02:04] 📁 Uploaded files moved to: /Users/gabrielmajorsky/Documents/__________win10dev.xyz/igiteam.github.com/appgenesys_web_apps_by_gabz/winejs_video_game_magazines/pdf_to_flipbook/flipbook_api/uploaded/
+[2026-06-08 19:02:04] 📝 Full log saved to: upload_logs.txt
+[2026-06-08 19:02:04] ================================================================================
+

@@ -1,0 +1,15 @@
+node_modules
+out
+dist
+*.vsix
+*.pyc
+pycache
+.DS_Store
+.vscode-test
+.env
+*.log
+tmp/
+test-output/
+media/icon.svg
+data/
+.vscode/settings.json
