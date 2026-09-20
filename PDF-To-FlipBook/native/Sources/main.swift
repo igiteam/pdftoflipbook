@@ -1,117 +1,3 @@
-#!/bin/bash
-# pdf_to_flipbook.sh
-# Creates a macOS app for converting PDFs to Turn.js flipbooks
-
-# ===============================================
-# 1. COLOR OUTPUT & BANNER
-# ===============================================
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-CYAN='\033[0;36m'
-BLUE='\033[0;34m'
-NC='\033[0m'
-
-echo -e "${CYAN}"
-echo "╔══════════════════════════════════════════════════════════╗"
-echo "║              PDF TO FLIPBOOK - Native macOS App          ║"
-echo "║         Drag & Drop PDF → PNG Images + Flipbook HTML     ║"
-echo "╚══════════════════════════════════════════════════════════╝"
-echo -e "${NC}"
-
-# ===============================================
-# 2. APP NAME AND STRUCTURE SETUP
-# ===============================================
-read -p "Enter your Flipbook app name (default: PDF-To-FlipBook): " APPNAME
-APPNAME=${APPNAME:-PDF-To-FlipBook}
-
-if [ -d "$APPNAME" ]; then
-    read -p "Folder '$APPNAME' already exists. Remove it? (y/N): " REMOVE
-    REMOVE=${REMOVE:-N}
-    if [[ "$REMOVE" == "y" || "$REMOVE" == "Y" ]]; then
-        echo "Removing existing folder '$APPNAME'..."
-        rm -rf "$APPNAME"
-    else
-        echo "Exiting to avoid overwriting."
-        exit 1
-    fi
-fi
-
-mkdir -p "$APPNAME/src" "$APPNAME/native" "$APPNAME/public" "$APPNAME/build"
-cd "$APPNAME" || exit
-
-# ===============================================
-# 3. CREATE CUSTOM ICON
-# ===============================================
-echo -e "${CYAN}🎨 Downloading PDF icon...${NC}"
-
-ICON_URL="https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/pdf_flipbook.png"
-
-ICON_FILE="appicon.${ICON_URL##*.}"
-ICON_FILE="${ICON_FILE%\?*}"
-
-echo "📥 Downloading icon from: $ICON_URL"
-curl -s -L "$ICON_URL" -o "/tmp/$ICON_FILE"
-
-if [ -f "/tmp/$ICON_FILE" ] && [ -s "/tmp/$ICON_FILE" ]; then
-    echo "✅ Icon downloaded successfully!"
-    
-    mkdir -p public
-    cp "/tmp/$ICON_FILE" "public/app_icon.png"
-    
-    ICONSET_DIR="public/AppIcon.iconset"
-    mkdir -p "$ICONSET_DIR"
-    
-    for SIZE in 16 32 64 128 256 512 1024; do
-        sips -z $SIZE $SIZE "public/app_icon.png" --out "$ICONSET_DIR/icon_${SIZE}x${SIZE}.png" 2>/dev/null || true
-        RETINA=$((SIZE * 2))
-        sips -z $RETINA $RETINA "public/app_icon.png" --out "$ICONSET_DIR/icon_${SIZE}x${SIZE}@2x.png" 2>/dev/null || true
-    done
-    
-    if command -v iconutil &> /dev/null; then
-        iconutil -c icns "$ICONSET_DIR" -o "public/app_icon.icns" 2>/dev/null
-        echo "✅ Created .icns file"
-    else
-        cp "public/app_icon.png" "public/app_icon.icns"
-    fi
-    
-    rm -rf "$ICONSET_DIR"
-else
-    echo "⚠ Download failed, creating fallback icon"
-    mkdir -p public
-    cat > public/app_icon.png.b64 << 'EOF'
-iVBORw0KGgoAAAANSUhEUgAAAgAAAAIAAQMAAADOtgr5AAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAANQTFRFAAAAp3o92gAAABxJREFUeJztwTEBAAAAwqD1T20Hb6AAAAAAAAA+Bhw4AAG1cXrRAAAAAElFTkSuQmCC
-EOF
-    base64 -D < public/app_icon.png.b64 > public/app_icon.png 2>/dev/null || {
-        echo "PDF Icon" > public/app_icon.txt
-    }
-    cp public/app_icon.png public/app_icon.icns 2>/dev/null
-    echo -e "${GREEN}✅ Created fallback icon${NC}"
-fi
-
-# ===============================================
-# 4. CHECK SWIFT COMPILER
-# ===============================================
-echo -e "${CYAN}🔧 Checking Swift compiler...${NC}"
-
-if ! command -v swiftc &> /dev/null; then
-    echo -e "${RED}❌ Swift compiler not found${NC}"
-    echo -e "${CYAN}🔄 Please install Xcode Command Line Tools:${NC}"
-    echo "   xcode-select --install"
-    exit 1
-fi
-
-echo -e "${GREEN}✅ Swift compiler found${NC}"
-
-# ===============================================
-# 5. CREATE SWIFT APP WITH COMPLETE HTML
-# ===============================================
-mkdir -p native/{Sources,Resources}
-cd native || exit
-
-echo "$APPNAME" > .appname
-
-cat > Sources/main.swift << 'EOF'
 import Cocoa
 import PDFKit
 import UniformTypeIdentifiers
@@ -364,7 +250,7 @@ class ViewController: NSViewController, NSDraggingDestination {
                     padding: 0;
                     box-sizing: border-box;
                 }
-
+        
                 body {
                     background: #2c3e50;
                     display: flex;
@@ -382,21 +268,21 @@ class ViewController: NSViewController, NSDraggingDestination {
                     -webkit-overflow-scrolling: touch;
                     overscroll-behavior: none;
                 }
-
+        
                 #magazine {
                     width: 100vw;
                     height: 100vh;
                     background: #fff;
                     overscroll-behavior: none;
                 }
-
+        
                 #magazine .turn-page {
                     background-size: 100.5% 100.5% !important;
                     background-position: center;
                     background-repeat: no-repeat;
                     background-color: #cbcbcb63;
                 }
-
+        
                 html {
                     overflow: hidden;
                     position: fixed;
@@ -405,11 +291,11 @@ class ViewController: NSViewController, NSDraggingDestination {
                     overscroll-behavior: none;
                     touch-action: pan-y pinch-zoom;
                 }
-
+        
                 .turn-page.loading {
                     position: relative;
                 }
-
+        
                 .turn-page.loading::after {
                     content: "📰";
                     position: absolute;
@@ -419,7 +305,7 @@ class ViewController: NSViewController, NSDraggingDestination {
                     font-size: 40px;
                     animation: spin 1s linear infinite;
                 }
-
+        
                 @keyframes spin {
                     from {
                         transform: translate(-50%, -50%) rotate(0deg);
@@ -428,7 +314,7 @@ class ViewController: NSViewController, NSDraggingDestination {
                         transform: translate(-50%, -50%) rotate(360deg);
                     }
                 }
-
+        
                 @media (hover: none) and (pointer: coarse) {
                     html, body {
                         margin: 0 !important;
@@ -453,41 +339,6 @@ class ViewController: NSViewController, NSDraggingDestination {
                         bottom: 0 !important;
                         transform: translateX(-50%) !important;
                     }
-                }
-
-                /* Fix for ALL elements during zoom - not just the magazine */
-                html, body {
-                    height: 100% !important;
-                    min-height: 100% !important;
-                    overflow: hidden !important;
-                    position: fixed !important;
-                    top: 0 !important;
-                    left: 0 !important;
-                    right: 0 !important;
-                    bottom: 0 !important;
-                    width: 100% !important;
-                }
-
-                #magazine {
-                    height: 100% !important;
-                    min-height: 100% !important;
-                    width: 100% !important;
-                    position: absolute !important;
-                    top: 0 !important;
-                    left: 0 !important;
-                }
-
-                #magazine.single-mode {
-                    height: 100% !important;
-                    min-height: 100% !important;
-                }
-
-                #magazine.single-mode .turn-page {
-                    height: 100% !important;
-                    min-height: 100% !important;
-                    background-size: contain !important;
-                    background-position: center !important;
-                    background-repeat: no-repeat !important;
                 }
             </style>
         </head>
@@ -991,20 +842,6 @@ class ViewController: NSViewController, NSDraggingDestination {
                         adjustHeight(); window.visualViewport?.addEventListener('resize',adjustHeight); window.addEventListener('resize',adjustHeight); window.addEventListener('orientationchange',function(){ setTimeout(adjustHeight,50); }); setTimeout(adjustHeight,100);
                     }
                 })();
-                // Prevent iOS swipe back gesture
-                document.addEventListener('touchstart', function(e) {
-                    if (e.touches.length === 1 && e.touches[0].clientX < 20) {
-                        e.preventDefault();
-                    }
-                }, { passive: false });
-
-                // Also prevent it on the magazine
-                $('#magazine').on('touchstart', function(e) {
-                    if (e.originalEvent.touches.length === 1 && e.originalEvent.touches[0].clientX < 20) {
-                        e.preventDefault();
-                        return false;
-                    }
-                });
             </script>
             <script>
                 (function(){
@@ -1049,259 +886,3 @@ let app = NSApplication.shared
 let delegate = AppDelegate()
 app.delegate = delegate
 app.run()
-EOF
-
-# ===============================================
-# 6. CREATE BUILD SCRIPT
-# ===============================================
-cat > build_app.sh << 'EOF'
-#!/bin/bash
-
-APPNAME=$(cat .appname 2>/dev/null || echo "PDF-To-FlipBook")
-
-echo "🔨 Building $APPNAME..."
-echo ""
-
-rm -rf build dist 2>/dev/null || true
-mkdir -p build dist
-
-echo "📦 Compiling Swift code..."
-swiftc Sources/main.swift \
-    -framework Cocoa \
-    -framework PDFKit \
-    -o build/app_binary 2>&1
-
-if [ $? -ne 0 ]; then
-    echo "❌ Compilation failed"
-    exit 1
-fi
-
-echo "✅ Compilation successful!"
-echo ""
-echo "📦 Creating app bundle: $APPNAME.app"
-APP_BUNDLE="dist/$APPNAME.app"
-rm -rf "$APP_BUNDLE" 2>/dev/null || true
-mkdir -p "$APP_BUNDLE/Contents/"{MacOS,Resources}
-
-cp build/app_binary "$APP_BUNDLE/Contents/MacOS/$APPNAME"
-chmod +x "$APP_BUNDLE/Contents/MacOS/$APPNAME"
-echo "✅ Copied binary"
-
-if [ -f "../public/app_icon.icns" ] && [ -s "../public/app_icon.icns" ]; then
-    cp "../public/app_icon.icns" "$APP_BUNDLE/Contents/Resources/app_icon.icns"
-    echo "✅ Copied .icns icon"
-elif [ -f "../public/app_icon.png" ] && [ -s "../public/app_icon.png" ]; then
-    cp "../public/app_icon.png" "$APP_BUNDLE/Contents/Resources/app_icon.icns"
-    echo "✅ Copied .png as icon"
-else
-    echo "⚠ No icon found, app will use default"
-fi
-
-cat > "$APP_BUNDLE/Contents/Info.plist" << INFO_EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>CFBundleName</key>
-    <string>$APPNAME</string>
-    <key>CFBundleIdentifier</key>
-    <string>com.flipbook.${APPNAME//-/_}</string>
-    <key>CFBundleVersion</key>
-    <string>1.0.0</string>
-    <key>CFBundleShortVersionString</key>
-    <string>1.0</string>
-    <key>CFBundlePackageType</key>
-    <string>APPL</string>
-    <key>CFBundleExecutable</key>
-    <string>$APPNAME</string>
-    <key>LSMinimumSystemVersion</key>
-    <string>10.15</string>
-    <key>LSUIElement</key>
-    <false/>
-    <key>CFBundleIconFile</key>
-    <string>app_icon.icns</string>
-    <key>NSPrincipalClass</key>
-    <string>NSApplication</string>
-    <key>NSHighResolutionCapable</key>
-    <true/>
-</dict>
-</plist>
-INFO_EOF
-echo "✅ Created Info.plist"
-
-echo "APPL????" > "$APP_BUNDLE/Contents/PkgInfo"
-
-if [ -d "$APP_BUNDLE" ]; then
-    echo ""
-    echo "🎉 BUILD SUCCESSFUL!"
-    echo "📁 App bundle: $APP_BUNDLE"
-else
-    echo "❌ App bundle creation failed!"
-    exit 1
-fi
-
-echo "✅ Build complete!"
-EOF
-
-chmod +x build_app.sh
-
-# ===============================================
-# 7. CREATE ONE-CLICK INSTALL SCRIPT
-# ===============================================
-cat > ../One-Click-Install.command << 'EOF'
-#!/bin/bash
-
-echo "⚡ PDF to FlipBook Installer"
-echo "================================================"
-
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-cd "$SCRIPT_DIR" || exit 1
-
-APPNAME=$(cat native/.appname 2>/dev/null || echo "PDF-To-FlipBook")
-echo "Installing: $APPNAME"
-echo ""
-
-echo "🔨 Step 1: Building app..."
-cd native || exit 1
-
-if ./build_app.sh; then
-    echo ""
-    echo "✅ Build successful!"
-else
-    echo "❌ Build failed"
-    exit 1
-fi
-
-echo ""
-echo "📦 Step 2: Installing to Applications..."
-APP_BUNDLE="dist/$APPNAME.app"
-USER_APPS="$HOME/Applications"
-
-if [ ! -d "$APP_BUNDLE" ]; then
-    echo "❌ App bundle not found at: $APP_BUNDLE"
-    exit 1
-fi
-
-mkdir -p "$USER_APPS"
-if [ -d "$USER_APPS/$APPNAME.app" ]; then
-    echo "⚠ Removing existing app..."
-    rm -rf "$USER_APPS/$APPNAME.app"
-fi
-
-if cp -R "$APP_BUNDLE" "$USER_APPS/"; then
-    INSTALL_PATH="$USER_APPS/$APPNAME.app"
-    echo "✅ Installed to: $INSTALL_PATH"
-else
-    echo "❌ Installation failed!"
-    exit 1
-fi
-
-echo -e "🔍 Verifying app bundle structure..."
-
-if [ -f "$APP_BUNDLE/Contents/MacOS/$APPNAME" ]; then
-    echo -e "   ✅ Bundle structure is CORRECT"
-else
-    echo -e "   ❌ Bundle structure is INCORRECT!"
-    exit 1
-fi
-
-echo -e "📋 Installing to Applications..."
-
-mkdir -p "$HOME/Applications"
-APP_PATH="$HOME/Applications/$APPNAME.app"
-rm -rf "$APP_PATH"
-cp -R "$APP_BUNDLE" "$APP_PATH"
-
-if [ -d "$APP_PATH" ]; then
-    echo -e "   ✅ Installed to: $APP_PATH"
-else
-    echo -e "   ❌ Failed to install to Applications"
-    APP_PATH="$(pwd)/$APP_BUNDLE"
-fi
-
-DESKTOP_APP="$HOME/Desktop/$APPNAME.app"
-rm -rf "$DESKTOP_APP"
-cp -R "$APP_BUNDLE" "$DESKTOP_APP"
-echo -e "   ✅ Copied to Desktop: $DESKTOP_APP"
-
-cat > "$HOME/Desktop/Launch $APPNAME.command" << LAUNCHER_EOF
-#!/bin/bash
-echo "🚀 Launching $APPNAME..."
-open "$APP_PATH"
-LAUNCHER_EOF
-chmod +x "$HOME/Desktop/Launch $APPNAME.command"
-echo -e "   ✅ Launcher created"
-
-echo -e "📌 Adding to Dock..."
-
-DOCK_APPS=$(defaults read com.apple.dock persistent-apps 2>/dev/null || echo "[]")
-if ! echo "$DOCK_APPS" | grep -q "$APPNAME"; then
-    defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$APP_PATH</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
-    killall Dock 2>/dev/null &
-    echo -e "   ✅ Added to Dock"
-else
-    echo -e "   ⚠ App already in Dock"
-fi
-
-echo ""
-echo "🚀 Step 4: Launching $APPNAME..."
-
-sleep 2
-
-if open "$INSTALL_PATH" 2>/dev/null; then
-    echo "✅ App launched successfully!"
-else
-    echo "⚠ Could not launch automatically"
-    echo "   Open manually from: $INSTALL_PATH"
-    echo "   Or use: Desktop/Launch $APPNAME.command"
-fi
-
-echo ""
-echo "🎉 INSTALLATION COMPLETE!"
-echo "================================================"
-echo "📋 HOW TO USE:"
-echo "   1. Drag & drop a PDF onto the app window"
-echo "   2. Click 'Convert PDF to FlipBook'"
-echo "   3. PNG images + HTML saved to Downloads folder"
-echo ""
-echo "📁 OUTPUT: Downloads/[PDFName]_FlipBook/"
-echo "   - [name]_page_1.png, page_2.png, etc."
-echo "   - [name]_flipbook.html (open in browser)"
-echo "================================================"
-echo ""
-echo "📌 App installed to: $INSTALL_PATH"
-echo "📌 Desktop copy: $HOME/Desktop/$APPNAME.app"
-echo "📌 Launcher: $HOME/Desktop/Launch $APPNAME.command"
-EOF
-
-chmod +x ../One-Click-Install.command
-
-# ===============================================
-# 8. BUILD AND INSTALL AUTOMATICALLY
-# ===============================================
-echo ""
-echo -e "${GREEN}✅ PDF to FlipBook app created!${NC}"
-echo ""
-echo -e "${CYAN}📁 Project location:${NC} $(pwd)/"
-echo -e "${CYAN}🚀 One-click install:${NC} ./One-Click-Install.command"
-echo ""
-
-read -p "Would you like to build and install the app now? (Y/n): " BUILD_NOW
-BUILD_NOW=${BUILD_NOW:-Y}
-
-if [[ "$BUILD_NOW" == "y" || "$BUILD_NOW" == "Y" || "$BUILD_NOW" == "" ]]; then
-    echo -e "${CYAN}🚀 Running installer...${NC}"
-    echo ""
-    
-    chmod +x ../One-Click-Install.command
-    ../One-Click-Install.command
-    
-    echo ""
-    echo -e "${GREEN}✅ Setup complete!${NC}"
-else
-    echo -e "${YELLOW}⏸ You can install later by running: ./One-Click-Install.command${NC}"
-fi
-
-echo ""
-echo -e "${GREEN}✨ Your PDF to FlipBook app is ready!${NC}"
-echo -e "${CYAN}💡 Drag any PDF onto the window and click Convert${NC}"
