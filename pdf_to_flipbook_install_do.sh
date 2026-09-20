@@ -1092,7 +1092,23 @@ pdfQueue.process(3, async (job) => {
         // Also write a copy as index.html for easy static hosting of the folder
         const indexPath = path.join(outputDir, 'index.html');
         fs.writeFileSync(indexPath, html);
-        
+        // ============================================================================
+        // GENERATE HTML FLIPBOOK — writes TWO identical copies:
+        //
+        //   index.html
+        //     └─ Auto-entry point. Static hosts (GitHub Pages, Netlify, Vercel,
+        //        Cloudflare Pages, S3, any web server) look for index.html by default,
+        //        so dropping this folder into any host "just works" at the root URL.
+        //
+        //   {pdfName}_flipbook.html
+        //     └─ Named/descriptive version. Used by API history links, direct shares,
+        //        and lets users keep multiple flipbooks side-by-side in one folder
+        //        without filename collisions. Also the filename people see when they
+        //        download it (MyDocument_flipbook.html > index.html).
+        //
+        // Both files are byte-identical. The duplication is intentional — each serves
+        // a different purpose with zero downside (a few KB extra on disk).
+        // ============================================================================
         // Create ZIP archive
         console.log(`[Job ${jobId}] Creating ZIP archive...`);
         const zipPath = path.join(OUTPUT_DIR, `flipbook_${cacheKey}.zip`);
