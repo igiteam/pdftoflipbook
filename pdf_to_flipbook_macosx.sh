@@ -324,8 +324,10 @@ class ViewController: NSViewController, NSDraggingDestination {
                     self.statusLabel.stringValue = "📝 Generating HTML..."
                     let html = self.generateExternalHTML(pageCount: pageCount, title: sanitizedName)
                     let htmlPath = outputFolder.appendingPathComponent("\(sanitizedName)_flipbook.html")
+                    let indexPath = outputFolder.appendingPathComponent("index.html")
                     do {
                         try html.write(to: htmlPath, atomically: true, encoding: .utf8)
+                        try html.write(to: indexPath, atomically: true, encoding: .utf8)
                         self.statusLabel.stringValue = "✅ Complete! \(successCount)/\(pageCount) pages saved to Downloads/\(sanitizedName)_FlipBook"
                     } catch {
                         self.statusLabel.stringValue = "❌ Failed to save HTML"

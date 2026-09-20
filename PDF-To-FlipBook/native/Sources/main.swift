@@ -250,7 +250,7 @@ class ViewController: NSViewController, NSDraggingDestination {
                     padding: 0;
                     box-sizing: border-box;
                 }
-        
+
                 body {
                     background: #2c3e50;
                     display: flex;
@@ -268,21 +268,21 @@ class ViewController: NSViewController, NSDraggingDestination {
                     -webkit-overflow-scrolling: touch;
                     overscroll-behavior: none;
                 }
-        
+
                 #magazine {
                     width: 100vw;
                     height: 100vh;
                     background: #fff;
                     overscroll-behavior: none;
                 }
-        
+
                 #magazine .turn-page {
                     background-size: 100.5% 100.5% !important;
                     background-position: center;
                     background-repeat: no-repeat;
                     background-color: #cbcbcb63;
                 }
-        
+
                 html {
                     overflow: hidden;
                     position: fixed;
@@ -291,11 +291,11 @@ class ViewController: NSViewController, NSDraggingDestination {
                     overscroll-behavior: none;
                     touch-action: pan-y pinch-zoom;
                 }
-        
+
                 .turn-page.loading {
                     position: relative;
                 }
-        
+
                 .turn-page.loading::after {
                     content: "📰";
                     position: absolute;
@@ -305,7 +305,7 @@ class ViewController: NSViewController, NSDraggingDestination {
                     font-size: 40px;
                     animation: spin 1s linear infinite;
                 }
-        
+
                 @keyframes spin {
                     from {
                         transform: translate(-50%, -50%) rotate(0deg);
@@ -314,7 +314,7 @@ class ViewController: NSViewController, NSDraggingDestination {
                         transform: translate(-50%, -50%) rotate(360deg);
                     }
                 }
-        
+
                 @media (hover: none) and (pointer: coarse) {
                     html, body {
                         margin: 0 !important;
@@ -339,6 +339,41 @@ class ViewController: NSViewController, NSDraggingDestination {
                         bottom: 0 !important;
                         transform: translateX(-50%) !important;
                     }
+                }
+
+                /* Fix for ALL elements during zoom - not just the magazine */
+                html, body {
+                    height: 100% !important;
+                    min-height: 100% !important;
+                    overflow: hidden !important;
+                    position: fixed !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                    right: 0 !important;
+                    bottom: 0 !important;
+                    width: 100% !important;
+                }
+
+                #magazine {
+                    height: 100% !important;
+                    min-height: 100% !important;
+                    width: 100% !important;
+                    position: absolute !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                }
+
+                #magazine.single-mode {
+                    height: 100% !important;
+                    min-height: 100% !important;
+                }
+
+                #magazine.single-mode .turn-page {
+                    height: 100% !important;
+                    min-height: 100% !important;
+                    background-size: contain !important;
+                    background-position: center !important;
+                    background-repeat: no-repeat !important;
                 }
             </style>
         </head>
@@ -842,6 +877,20 @@ class ViewController: NSViewController, NSDraggingDestination {
                         adjustHeight(); window.visualViewport?.addEventListener('resize',adjustHeight); window.addEventListener('resize',adjustHeight); window.addEventListener('orientationchange',function(){ setTimeout(adjustHeight,50); }); setTimeout(adjustHeight,100);
                     }
                 })();
+                // Prevent iOS swipe back gesture
+                document.addEventListener('touchstart', function(e) {
+                    if (e.touches.length === 1 && e.touches[0].clientX < 20) {
+                        e.preventDefault();
+                    }
+                }, { passive: false });
+
+                // Also prevent it on the magazine
+                $('#magazine').on('touchstart', function(e) {
+                    if (e.originalEvent.touches.length === 1 && e.originalEvent.touches[0].clientX < 20) {
+                        e.preventDefault();
+                        return false;
+                    }
+                });
             </script>
             <script>
                 (function(){
