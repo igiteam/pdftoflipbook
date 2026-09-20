@@ -1088,6 +1088,10 @@ pdfQueue.process(3, async (job) => {
         const html = generateFlipbookHTML(pdfName, pageCount, thumbnailUrl, cacheKey, DOMAIN);
         const htmlPath = path.join(outputDir, `${pdfName}_flipbook.html`);
         fs.writeFileSync(htmlPath, html);
+
+        // Also write a copy as index.html for easy static hosting of the folder
+        const indexPath = path.join(outputDir, 'index.html');
+        fs.writeFileSync(indexPath, html);
         
         // Create ZIP archive
         console.log(`[Job ${jobId}] Creating ZIP archive...`);
