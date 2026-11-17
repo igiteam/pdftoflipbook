@@ -374,7 +374,7 @@ class ViewController: NSViewController, NSDraggingDestination {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
             <title>\(safeTitle)</title>
-            <script type="text/javascript" src="https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/jquery-1.7.1.min.js"></script>
+            <script type="text/javascript" src="https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/jquery-1.12.4.min.js"></script>
             <script type="text/javascript" src="https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/magazine_turn.js"></script>
             <style>
                 * {
