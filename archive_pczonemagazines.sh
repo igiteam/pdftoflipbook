@@ -314,6 +314,24 @@ done
 find "$DEST" -maxdepth 1 -type d -name '.__extracting__' -empty -delete 2>/dev/null || true
 
 echo "Done. Contents in: $DEST"
+
+cd ~/Downloads
+
+# sanity check: what will be affected
+ls -d pczone/*/flipbook_*
+
+# flatten
+for d in pczone/*/flipbook_*; do
+  [[ -d "$d" ]] || continue
+  parent="$(dirname "$d")"
+  echo "Moving: $d -> $parent"
+  shopt -s dotglob
+  mv -n -- "$d"/* "$parent"/
+  shopt -u dotglob
+  rmdir -- "$d"
+done
+
+
 EOF
 
 # 2. Make it executable
