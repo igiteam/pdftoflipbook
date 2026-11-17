@@ -4,7 +4,7 @@
 # API server: JSON only on port 3000
 # Web UI: Static HTML served by nginx with TABLE VIEW
 # Features: Weserv thumbnails, Progress tracking, Favicons, Table View, OG Image Generation
-# Usage: curl -sL https://cdn.gitgpt.chat/rtx/sh/flipbook-complete.sh | sudo bash
+# Usage: curl -sL https://cdn.macosxjs.com/rtx/sh/flipbook-complete.sh | sudo bash
 
 # Force non-interactive mode for all apt commands
 export DEBIAN_FRONTEND=noninteractive
@@ -324,12 +324,12 @@ echo "-------------------------------------"
 
 # Domain input
 while true; do
-    get_input "Enter your domain (e.g., flipbook.gitgpt.chat)" "flipbook.gitgpt.chat" DOMAIN_NAME
+    get_input "Enter your domain (e.g., flipbook.macosxjs.com)" "flipbook.macosxjs.com" DOMAIN_NAME
     
     if validate_domain "$DOMAIN_NAME"; then
         break
     else
-        warn "Invalid domain format. Please enter a full domain (e.g., flipbook.gitgpt.chat)"
+        warn "Invalid domain format. Please enter a full domain (e.g., flipbook.macosxjs.com)"
     fi
 done
 
@@ -1242,7 +1242,7 @@ function generateFlipbookHTML(title, pageCount, thumbnailUrl, cacheKey, domain) 
     \n\
     <title>' + safeTitle + ' - FlipBook</title>\n\
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>\n\
-    <script type="text/javascript" src="https://cdn.gitgpt.chat/rtx/magazine_turn.js"></script>\n\
+    <script type="text/javascript" src="https://cdn.macosxjs.com/rtx/magazine_turn.js"></script>\n\
     <style>\n\
         * {\n\
             margin: 0;\n\
@@ -2597,7 +2597,7 @@ cat > /var/www/flipbook/web/og-upload.html << 'UPLOAD_HTML'
             <code style="display: block; background: #000; padding: 10px; border-radius: 6px; margin: 10px 0;">pm2 restart flipbook-api</code>
             
             <p><strong>Via cURL (Command Line):</strong></p>
-            <code style="display: block; background: #000; padding: 10px; border-radius: 6px; margin: 10px 0;">curl -X POST https://flipbook.gitgpt.chat/api/og/upload-template -F "file=@my-custom-og.js"</code>
+            <code style="display: block; background: #000; padding: 10px; border-radius: 6px; margin: 10px 0;">curl -X POST https://flipbook.macosxjs.com/api/og/upload-template -F "file=@my-custom-og.js"</code>
             
             <hr>
             <a href="/og-preview.html" style="color: #667eea;">🔍 Preview OG Image</a> | 
@@ -2687,14 +2687,14 @@ cat > /var/www/flipbook/web/og-upload.html << 'UPLOAD_HTML'
 </html>
 UPLOAD_HTML
 
-echo "✅ Upload page created at: https://flipbook.gitgpt.chat/og-upload.html"
+echo "✅ Upload page created at: https://flipbook.macosxjs.com/og-upload.html"
 
 # Create templates directory and default template for download
 mkdir -p /var/www/flipbook/web/templates
 cp /opt/flipbook-api/og-generator.js /var/www/flipbook/web/templates/og-design-default.js
 chmod 644 /var/www/flipbook/web/templates/og-design-default.js
 
-echo "✅ Default template available at: https://flipbook.gitgpt.chat/templates/og-design-default.js"
+echo "✅ Default template available at: https://flipbook.macosxjs.com/templates/og-design-default.js"
 
 # Create OG preview HTML file for testing
 cat > /var/www/flipbook/web/og-preview.html << 'OG_PREVIEW'
@@ -2990,7 +2990,7 @@ cat > /var/www/flipbook/web/og-preview.html << 'OG_PREVIEW'
 </html>
 OG_PREVIEW
 
-echo "✅ OG preview page created at: https://flipbook.gitgpt.chat/og-preview.html"
+echo "✅ OG preview page created at: https://flipbook.macosxjs.com/og-preview.html"
 
 # ============= CREATE WEB UI WITH TABLE VIEW =============
 log "Creating web UI with TABLE VIEW at /var/www/flipbook/web/..."
