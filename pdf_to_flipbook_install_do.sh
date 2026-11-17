@@ -1241,8 +1241,8 @@ function generateFlipbookHTML(title, pageCount, thumbnailUrl, cacheKey, domain) 
     <meta property="og:locale" content="en_US">\n\
     \n\
     <title>' + safeTitle + ' - FlipBook</title>\n\
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>\n\
-    <script type="text/javascript" src="https://cdn.macosxjs.com/rtx/magazine_turn.js"></script>\n\
+    <script type="text/javascript" src="https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/jquery-1.12.4.min.js"></script>\n\
+    <script type="text/javascript" src="https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/magazine_turn.js"></script>\n\
     <style>\n\
         * {\n\
             margin: 0;\n\
