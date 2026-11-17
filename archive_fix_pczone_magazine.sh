@@ -72,3 +72,44 @@ for u in \
   printf '%s -> ' "$u"
   curl -s -o /dev/null -w '%{http_code}\n' -L "$u"
 done
+
+
+#!/usr/bin/env bash
+# zip_pczone.sh
+# usage: ./zip_pczone.sh [pczone_dir] [out_dir]
+set -euo pipefail
+
+PCZONE="${1:-pczone}"
+OUTDIR="${2:-pczone_archive}"
+
+[[ -d "$PCZONE" ]] || { echo "Error: '$PCZONE' not found" >&2; exit 1; }
+mkdir -p "$OUTDIR"
+
+count=0
+for d in "$PCZONE"/*/; do
+  [[ -d "$d" ]] || continue
+  name="$(basename "$d")"
+
+  # skip the backup dir — it's not a flipbook folder
+  [[ "$name" == "html_before_changes" ]] && continue
+
+  # only zip folders that actually look like flipbooks
+  [[ "$name" == *__flipbook ]] || continue
+
+  zip_path="$OUTDIR/$name.zip"
+
+  if [[ -f "$zip_path" ]]; then
+    echo "  [skip, exists] $zip_path"
+    continue
+  fi
+
+  echo "  [zipping] $d -> $zip_path"
+  # -r recurse, -q quiet, -X strip extra file attrs (cleaner on archive.org)
+  ( cd "$PCZONE" && zip -rqX "$(cd "$OLDPWD" && pwd)/$zip_path" "$name" )
+  count=$((count + 1))
+done
+
+echo
+echo "Done. $count new zip(s) in $OUTDIR"
+echo
+ls -lh "$OUTDIR"/*.zip 2>/dev/null | awk '{print $5, $9}'
