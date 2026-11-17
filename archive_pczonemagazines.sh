@@ -241,50 +241,6 @@ files=(
   "pczone-magazine-complete-collection_meta.xml"
 )
 
-# ---- helpers ----
-
-# Turn a zip basename into a safe folder name:
-#   "PC_Zone_Issue_1__April_1993__flipbook.zip" -> "PC_Zone_Issue_1__April_1993__flipbook"
-zip_to_folder() {
-  local n="$1"
-  n="${n%.zip}"
-  # decode the percent-encodings archive.org uses in filenames
-  n="${n//%2C/,}"
-  n="${n//%20/ }"
-  n="${n//%28/(}"
-  n="${n//%29/)}"
-  n="${n//%5B/[}"
-  n="${n//%5D/]}"
-  n="${n//%26/&}"
-  n="${n//%27/\'}"
-  # strip characters macOS / shells dislike
-  n="${n//\//-}"
-  printf '%s' "$n"
-}
-
-# Pull a nice title out of the extracted HTML (og:title, <title>, or <h1>),
-# sanitised for use as a folder name.
-html_title() {
-  local f="$1"
-  local t=""
-  # og:title first (most reliable in flipbooks)
-  t=$(grep -oE '<meta[^>]+property="og:title"[^>]+content="[^"]*"' "$f" 2>/dev/null \
-        | head -n1 | sed -E 's/.*content="([^"]*)".*/\1/')
-  # fall back to <title>
-  if [[ -z "$t" ]]; then
-    t=$(grep -oiE '<title>[^<]*</title>' "$f" 2>/dev/null \
-          | head -n1 | sed -E 's#</?title>##gi')
-  fi
-  # fall back to first <h1>
-  if [[ -z "$t" ]]; then
-    t=$(grep -oiE '<h1[^>]*>[^<]*</h1>' "$f" 2>/dev/null \
-          | head -n1 | sed -E 's#</?h1[^>]*>##gi')
-  fi
-  # sanitise: collapse whitespace, strip slashes/colons, trim
-  t=$(printf '%s' "$t" | tr -d '\r\n' | sed -E 's/[[:space:]]+/ /g; s#[/:]#-#g; s/^ //; s/ $//')
-  printf '%s' "$t"
-}
-
 # ---- main loop ----
 total=${#files[@]}
 i=0
@@ -305,20 +261,19 @@ for f in "${files[@]}"; do
     continue
   fi
 
-  # --- extract zip into its own temp folder ---
-  folder=$(zip_to_folder "$f")
-  tmpdir="${folder}.__extracting__"
+  # --- extract zip into a temp dir ---
+  tmpdir=".__extracting__"
   rm -rf "$tmpdir"
   mkdir -p "$tmpdir"
 
-  echo "   extracting -> $tmpdir"
+  echo "   extracting..."
   if ! unzip -q -o "$f" -d "$tmpdir"; then
-    echo "!! UNZIP FAILED: $f (zip kept, temp dir kept for inspection)" >&2
+    echo "!! UNZIP FAILED: $f (zip kept, temp dir kept)" >&2
     continue
   fi
   rm -f "$f"
 
-  # --- find the main HTML inside (prefer index.html, else the largest .html) ---
+  # --- find the main HTML (index.html first, else the largest .html) ---
   html=""
   if [[ -f "$tmpdir/index.html" ]]; then
     html="$tmpdir/index.html"
@@ -327,14 +282,19 @@ for f in "${files[@]}"; do
             | xargs -0 -r ls -S 2>/dev/null | head -n1 || true)
   fi
 
-  # --- pick a new folder name ---
-  newname=""
+  # --- folder name = HTML basename minus .html (or zip name as fallback) ---
   if [[ -n "$html" && -f "$html" ]]; then
-    newname=$(html_title "$html")
+    newname=$(basename "$html")
+    newname="${newname%.*}"
+  else
+    newname="${f%.zip}"
   fi
-  [[ -z "$newname" ]] && newname="$folder"
 
-  # avoid collisions
+  # --- sanitise for macOS ---
+  newname="${newname//\//-}"
+  newname="${newname//:/-}"
+
+  # --- collision handling ---
   final="$newname"
   n=2
   while [[ -e "$final" ]]; do
@@ -346,12 +306,12 @@ for f in "${files[@]}"; do
   if mv "$tmpdir" "$final"; then
     echo "   -> $final"
   else
-    echo "!! RENAME FAILED: $tmpdir -> $final" >&2
+    echo "!! RENAME FAILED -> $final" >&2
   fi
 done
 
 # clean up any leftover empty temp dirs
-find "$DEST" -maxdepth 1 -type d -name '*.__extracting__' -empty -delete 2>/dev/null || true
+find "$DEST" -maxdepth 1 -type d -name '.__extracting__' -empty -delete 2>/dev/null || true
 
 echo "Done. Contents in: $DEST"
 EOF
