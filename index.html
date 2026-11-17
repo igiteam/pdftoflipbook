@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<!-- saved from url=(0074)https://songdrop.fra1.cdn.digitaloceanspaces.com/rtx/pczone_magazines.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>PC Zone Magazines - Shelf Archive</title>
-    <link rel="icon" href="https://cdn.gitgpt.chat/rtx/images/pczonemag.png" type="image/png">
+    <title>Flibook Magazines - Shelf Archive</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/pdf_flipbook.png" type="image/png">
     <style>
         /* 1. Define our global zoom variable */
         :root {
@@ -39,7 +38,7 @@
             align-items: flex-end;
             min-height: 100%;
             position: relative;
-            background-image: url('https://cdn.gitgpt.chat/rtx/images/bg_normal_shelf.png');
+            background-image: url('https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/bg_normal_shelf.png');
             background-repeat: repeat;
             background-position: top left;
             background-size: calc(2048px * var(--zoom)) auto;
@@ -236,25 +235,27 @@
 
     <script>
         // ============================================================
-        // MODIFIED SCRIPT: Load magazine data from JSON URL instead of local mag_list.js
+        // MODIFIED SCRIPT: Load magazine data from JSON URL instead of local magazines.json
         // ============================================================
 
         let magazines = [];
         let currentZoom = 80;
         let itemsPerRow = 5;
 
+        const jsonUrl = 'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/magazines.json';
+        
         // Shelf background images for BETWEEN magazines (horizontal gaps)
         const shelfBgImages = [
-            'https://cdn.gitgpt.chat/rtx/images/bookshelfbg1.png',
-            'https://cdn.gitgpt.chat/rtx/images/bookshelfbg2.png',
-            'https://cdn.gitgpt.chat/rtx/images/bookshelfbg3.png'
+            'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/bookshelfbg1.png',
+            'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/bookshelfbg2.png',
+            'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/bookshelfbg3.png'
         ];
 
         // Shelf images for BETWEEN rows (vertical gaps - actual wooden shelves)
         const shelfImages = [
-            'https://cdn.gitgpt.chat/rtx/images/bookshelf1.png',
-            'https://cdn.gitgpt.chat/rtx/images/bookshelf2.png',
-            'https://cdn.gitgpt.chat/rtx/images/bookshelf3.png'
+            'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/bookshelf1.png',
+            'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/bookshelf2.png',
+            'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/bookshelf3.png'
         ];
 
         function getRandomImage(imagesArray) {
@@ -369,8 +370,6 @@
             const shelfDiv = document.getElementById('bigshelf');
             shelfDiv.innerHTML = '<div class="loading">📚 LOADING MAGAZINES FROM ARCHIVE...</div>';
 
-            const jsonUrl = 'https://cdn.gitgpt.chat/rtx/pczone_magazine.json';
-
             try {
                 const response = await fetch(jsonUrl);
                 if (!response.ok) {
@@ -405,7 +404,7 @@
                     const originalTitle = mag.title || '';
 
                     // Use thumbnail_url for cover image, fallback to placeholder
-                    const thumbnailUrl = mag.cover_url || 'https://cdn.gitgpt.chat/rtx/images/pczonemag.png';
+                    const thumbnailUrl = mag.cover_url || 'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/pczonemag.png';
 
                     // Use html_url as the link to open the flipbook
                     const pdfUrl = mag.html_url || '#';
@@ -450,7 +449,7 @@
                 // Clear loading message and render shelf items
                 shelfDiv.innerHTML = '';
 
-                const placeholderImg = 'https://cdn.gitgpt.chat/rtx/images/pczonemag.png';
+                const placeholderImg = 'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/pczonemag.png';
 
                 magazines.forEach((mag, index) => {
                     const coverUrl = mag.imageUrl && mag.imageUrl !== '#' ? mag.imageUrl : placeholderImg;
