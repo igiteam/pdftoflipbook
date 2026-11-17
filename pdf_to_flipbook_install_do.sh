@@ -4,7 +4,7 @@
 # API server: JSON only on port 3000
 # Web UI: Static HTML served by nginx with TABLE VIEW
 # Features: Weserv thumbnails, Progress tracking, Favicons, Table View, OG Image Generation
-# Usage: curl -sL https://cdn.macosxjs.com/rtx/sh/flipbook-complete.sh | sudo bash
+# Usage: curl -sL https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/pdf_to_flipbook_install_do.sh | sudo bash
 
 # Force non-interactive mode for all apt commands
 export DEBIAN_FRONTEND=noninteractive
