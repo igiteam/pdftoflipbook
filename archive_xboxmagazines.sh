@@ -4,7 +4,7 @@ cat > ~/oxm.sh <<'EOF'
 set -euo pipefail
 
 BASE="https://archive.org/download/official-xbox-magazine-complete-collection"
-DEST="$HOME/Downloads/oxm"
+DEST="$HOME/Downloads/xbox"
 mkdir -p "$DEST"
 cd "$DEST"
 
