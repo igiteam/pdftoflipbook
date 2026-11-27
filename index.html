@@ -29,6 +29,7 @@
             flex: 1;
             overflow: auto;
             background-color: #1a0f08;
+            position: relative;
         }
 
         /* 2. Scale the background AND layout spacing together */
@@ -45,6 +46,10 @@
             background-size: calc(2048px * var(--zoom)) auto;
             gap: calc(15px * var(--zoom));
             padding: calc(24px * var(--zoom)) 0 calc(96px * var(--zoom)) 0;
+        }
+
+        #bigshelf.empty-search {
+            display: none;
         }
 
         .shelf-row {
@@ -228,7 +233,7 @@
         #searchInput {
             width: 100%;
             height: 28px;
-            padding: 0 58px 0 28px;
+            padding: 0 64px 0 28px;
             border-radius: 14px;
             border: 1px solid rgba(212, 175, 90, 0.45);
             background: rgba(10, 6, 4, 0.85);
@@ -327,13 +332,38 @@
         }
 
         .no-results {
-            color: #d4af5a;
-            font-size: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 25;
+            background: rgba(20, 12, 6, 0.94);
+            border-bottom: 1px solid rgba(212, 175, 90, 0.3);
+            color: #f0c674;
+            font-size: 13px;
             text-align: center;
-            padding: 80px 20px;
-            font-family: monospace;
+            padding: 12px 16px;
+            font-family: ui-monospace, monospace;
             width: 100%;
             display: none;
+        }
+
+        .no-results.visible {
+            display: block;
+        }
+
+        .no-results button {
+            margin-left: 8px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(212, 175, 90, 0.5);
+            background: rgba(212, 175, 90, 0.15);
+            color: #f0c674;
+            font: inherit;
+            font-size: 11.5px;
+            cursor: pointer;
+        }
+
+        .no-results button:hover {
+            background: rgba(212, 175, 90, 0.3);
         }
 
         .shelf-container::-webkit-scrollbar {
@@ -354,11 +384,14 @@
 
 <body>
 
-    <div class="shelf-container">
+    <div class="shelf-container" id="shelfContainer">
+        <div id="noResults" class="no-results">
+            <span id="noResultsText">No magazines match your search.</span>
+            <button type="button" id="noResultsReset">Reset</button>
+        </div>
         <div id="bigshelf">
             <div class="loading">📚 LOADING MAGAZINES FROM ARCHIVE...</div>
         </div>
-        <div id="noResults" class="no-results">No magazines match your search.</div>
     </div>
 
     <!-- Delicious Library Style Bottom Bar -->
@@ -392,6 +425,7 @@
         let currentZoom = 80;
         let itemsPerRow = 5;
         let currentQuery = '';
+        let lastVisibleCount = -1;
 
         const jsonUrl = 'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/magazines.json';
         const PLACEHOLDER_IMG = 'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/123x180.png';
@@ -407,6 +441,15 @@
             'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/bookshelf2.png',
             'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/bookshelf3.png'
         ];
+
+        function normalizeSearchString(str) {
+            return (str || '')
+                .toLowerCase()
+                .replace(/[_-]+/g, ' ')
+                .replace(/[^a-z0-9\s]+/g, ' ')
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
 
         function loadSavedZoom() {
             const saved = localStorage.getItem('pczone-mag-zoom');
@@ -426,7 +469,7 @@
             document.documentElement.style.setProperty('--zoom', zoomFactor);
             document.getElementById('zoomPercent').textContent = currentZoom + '%';
             saveZoom(currentZoom);
-            organizeIntoRows();
+            organizeIntoRows(true);
         }
 
         function preloadAllImages(items) {
@@ -442,17 +485,23 @@
             });
         }
 
-        // Fast instant search over pre-indexed searchText (multi-word AND match)
         function filterMagazines(query) {
-            currentQuery = (query || '').trim().toLowerCase();
-            const terms = currentQuery ? currentQuery.split(/\s+/) : [];
+            currentQuery = (query || '').trim();
+            const normalizedQuery = normalizeSearchString(currentQuery);
+            const terms = normalizedQuery ? normalizedQuery.split(' ') : [];
+
             const clearBtn = document.getElementById('searchClear');
             const countEl = document.getElementById('searchCount');
             const noResultsEl = document.getElementById('noResults');
+            const noResultsText = document.getElementById('noResultsText');
+            const shelfEl = document.getElementById('bigshelf');
+            const containerEl = document.getElementById('shelfContainer');
 
             clearBtn.classList.toggle('visible', currentQuery.length > 0);
 
             let visibleCount = 0;
+            let visibilityChanged = false;
+
             for (let i = 0; i < magazines.length; i++) {
                 const mag = magazines[i];
                 let match = true;
@@ -462,19 +511,38 @@
                         break;
                     }
                 }
-                mag.el.classList.toggle('hidden', !match);
+                const shouldHide = !match;
+                if (mag.hidden !== shouldHide) {
+                    mag.hidden = shouldHide;
+                    mag.el.classList.toggle('hidden', shouldHide);
+                    visibilityChanged = true;
+                }
                 if (match) visibleCount++;
             }
 
             countEl.textContent = currentQuery ? `${visibleCount}/${magazines.length}` : `${magazines.length}`;
-            noResultsEl.style.display = (magazines.length > 0 && visibleCount === 0) ? 'block' : 'none';
 
-            organizeIntoRows();
+            const showEmpty = magazines.length > 0 && visibleCount === 0;
+            noResultsEl.classList.toggle('visible', showEmpty);
+            shelfEl.classList.toggle('empty-search', showEmpty);
+
+            if (showEmpty) {
+                noResultsText.textContent = `No magazines match "${currentQuery}".`;
+                containerEl.scrollTop = 0;
+                lastVisibleCount = 0;
+                return;
+            }
+
+            if (visibilityChanged || lastVisibleCount !== visibleCount) {
+                containerEl.scrollTop = 0;
+                lastVisibleCount = visibleCount;
+                organizeIntoRows(true);
+            }
         }
 
-        function organizeIntoRows() {
+        function organizeIntoRows(force = false) {
             const shelf = document.getElementById('bigshelf');
-            if (!shelf || magazines.length === 0) return;
+            if (!shelf || magazines.length === 0 || shelf.classList.contains('empty-search')) return;
 
             const containerWidth = shelf.clientWidth;
             const coverWidth = 280 * (currentZoom / 100);
@@ -482,11 +550,18 @@
             const horizontalPadding = 60;
             const itemTotalWidth = coverWidth + gapSize;
 
-            itemsPerRow = Math.max(1, Math.floor((containerWidth - horizontalPadding) / itemTotalWidth));
+            const nextItemsPerRow = Math.max(1, Math.floor((containerWidth - horizontalPadding) / itemTotalWidth));
+            if (!force && nextItemsPerRow === itemsPerRow && shelf.querySelector('.shelf-row')) {
+                return;
+            }
+            itemsPerRow = nextItemsPerRow;
 
-            const visibleItems = magazines
-                .filter(m => !m.el.classList.contains('hidden'))
-                .map(m => m.el);
+            const visibleItems = [];
+            for (let i = 0; i < magazines.length; i++) {
+                if (!magazines[i].hidden) {
+                    visibleItems.push(magazines[i].el);
+                }
+            }
 
             const existingRows = shelf.querySelectorAll('.shelf-row');
             existingRows.forEach(row => row.remove());
@@ -559,7 +634,9 @@
                     const originalTitle = mag.title || '';
                     const thumbnailUrl = mag.cover_url || PLACEHOLDER_IMG;
                     const pdfUrl = mag.html_url || '#';
-                    const searchText = `${displayTitle} ${originalTitle} ${mag.original_name || ''} ${mag.id || ''}`.toLowerCase();
+                    const searchText = normalizeSearchString(
+                        `${displayTitle} ${originalTitle} ${mag.original_name || ''} ${mag.id || ''}`
+                    );
 
                     return {
                         id: mag.id,
@@ -569,6 +646,7 @@
                         pdfUrl: pdfUrl,
                         rawData: mag,
                         searchText: searchText,
+                        hidden: false,
                         el: null
                     };
                 });
@@ -639,6 +717,7 @@
                     mag.el = itemDiv;
                 });
 
+                lastVisibleCount = magazines.length;
                 document.getElementById('searchCount').textContent = `${magazines.length}`;
                 loadSavedZoom();
                 applyZoom();
@@ -653,9 +732,16 @@
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
-                if (magazines.length > 0) organizeIntoRows();
+                if (magazines.length > 0) organizeIntoRows(false);
             }, 120);
         });
+
+        function clearSearchAndFocus() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.value = '';
+            filterMagazines('');
+            searchInput.focus();
+        }
 
         function bindControls() {
             const zoomSlider = document.getElementById('zoomSlider');
@@ -679,11 +765,8 @@
                 }
             });
 
-            searchClear.addEventListener('click', () => {
-                searchInput.value = '';
-                filterMagazines('');
-                searchInput.focus();
-            });
+            searchClear.addEventListener('click', clearSearchAndFocus);
+            document.getElementById('noResultsReset').addEventListener('click', clearSearchAndFocus);
 
             window.addEventListener('keydown', (e) => {
                 if ((e.key === '/' && document.activeElement !== searchInput) ||
