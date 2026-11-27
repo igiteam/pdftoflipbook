@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Flibook Magazines - Shelf Archive</title>
     <link rel="icon" href="https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/pdf_flipbook.png" type="image/png">
@@ -10,7 +11,7 @@
             --zoom: 1;
         }
 
-        * {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -43,7 +44,7 @@
             background-position: top left;
             background-size: calc(2048px * var(--zoom)) auto;
             gap: calc(15px * var(--zoom));
-            padding: calc(24px * var(--zoom)) 0 calc(100px * var(--zoom)) 0;
+            padding: calc(24px * var(--zoom)) 0 calc(96px * var(--zoom)) 0;
         }
 
         .shelf-row {
@@ -87,8 +88,11 @@
             position: relative;
             background: transparent;
             z-index: 10;
-            /* ADDED: 10px top margin on each magazine */
             margin-top: calc(20px * var(--zoom));
+        }
+
+        .shelf-item.hidden {
+            display: none !important;
         }
 
         .shelf-item:hover {
@@ -114,6 +118,8 @@
             mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%),
                 linear-gradient(to bottom, transparent 0%, black 3%, black 97%, transparent 100%);
             mask-composite: intersect;
+            background: #2a1a10 url('https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/123x180.png') center / contain no-repeat;
+            min-width: calc(123px * var(--zoom) / 1.55);
         }
 
         .mag-name {
@@ -142,66 +148,192 @@
             color: #f0c674;
         }
 
-        .zoom-controls {
+        /* ---- Delicious Library Style Bottom Bar ---- */
+        .bottom-bar {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 46px;
             z-index: 100;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            border-radius: 50px;
-            padding: 8px 18px;
-            display: flex;
-            gap: 12px;
+            background: linear-gradient(to bottom, rgba(38, 24, 14, 0.94), rgba(16, 9, 5, 0.97));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(212, 175, 90, 0.35);
+            box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.65);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
-            border: 1px solid #d4af5a;
-            font-family: monospace;
-            transform: scale(0.82);
-            transform-origin: bottom right;
+            padding: 0 14px;
+            gap: 10px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
-        .zoom-controls button {
-            background: #d4af5a;
-            border: none;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
+        .bar-left {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .add-btn {
+            width: 30px;
+            height: 28px;
+            border-radius: 7px;
+            border: 1px solid rgba(212, 175, 90, 0.55);
+            background: linear-gradient(to bottom, #3b2616, #24160c);
+            color: #f0c674;
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 600;
+            line-height: 1;
             cursor: pointer;
-            transition: all 0.15s;
-            color: #1a0f08;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 1px 2px rgba(0, 0, 0, 0.5);
+            transition: all 0.15s ease;
         }
 
-        .zoom-controls button:hover {
-            background: #f0c674;
-            transform: scale(1.05);
+        .add-btn:hover {
+            background: linear-gradient(to bottom, #4b311d, #2e1c0f);
+            border-color: #f0c674;
+            color: #fff;
         }
 
-        .zoom-controls button:active {
+        .add-btn:active {
             transform: scale(0.95);
         }
 
+        .bar-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: clamp(190px, 34vw, 380px);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 10px;
+            width: 13px;
+            height: 13px;
+            color: #b59652;
+            pointer-events: none;
+        }
+
+        #searchInput {
+            width: 100%;
+            height: 28px;
+            padding: 0 58px 0 28px;
+            border-radius: 14px;
+            border: 1px solid rgba(212, 175, 90, 0.45);
+            background: rgba(10, 6, 4, 0.85);
+            color: #f5e6c4;
+            font-size: 12.5px;
+            outline: none;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.7);
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+
+        #searchInput::placeholder {
+            color: rgba(212, 175, 90, 0.5);
+        }
+
+        #searchInput:focus {
+            border-color: #f0c674;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.7), 0 0 0 2px rgba(212, 175, 90, 0.2);
+        }
+
+        .search-count {
+            position: absolute;
+            right: 24px;
+            font-size: 10.5px;
+            color: rgba(212, 175, 90, 0.7);
+            font-family: ui-monospace, monospace;
+            pointer-events: none;
+        }
+
+        .search-clear {
+            position: absolute;
+            right: 6px;
+            width: 16px;
+            height: 16px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(212, 175, 90, 0.25);
+            color: #f0c674;
+            font-size: 11px;
+            line-height: 1;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-clear.visible {
+            display: inline-flex;
+        }
+
+        .search-clear:hover {
+            background: rgba(212, 175, 90, 0.45);
+        }
+
+        .bar-right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .zoom-icon {
+            color: #b59652;
+            font-size: 11px;
+            user-select: none;
+        }
+
         #zoomSlider {
-            width: 130px;
+            width: 110px;
+            height: 4px;
             cursor: pointer;
             accent-color: #d4af5a;
         }
 
         .zoom-value {
             color: #d4af5a;
-            font-weight: bold;
-            font-size: 13px;
-            min-width: 45px;
-            text-align: center;
+            font-weight: 600;
+            font-size: 11.5px;
+            font-family: ui-monospace, monospace;
+            min-width: 38px;
+            text-align: right;
+        }
+
+        @media (max-width: 560px) {
+            .bottom-bar { padding: 0 8px; gap: 6px; }
+            #zoomSlider { width: 70px; }
+            .zoom-value { display: none; }
         }
 
         .loading {
             color: #d4af5a;
-            font-size: 24px;
+            font-size: 20px;
             text-align: center;
-            padding: 100px;
+            padding: 100px 20px;
             font-family: monospace;
+            width: 100%;
+        }
+
+        .no-results {
+            color: #d4af5a;
+            font-size: 15px;
+            text-align: center;
+            padding: 80px 20px;
+            font-family: monospace;
+            width: 100%;
+            display: none;
         }
 
         .shelf-container::-webkit-scrollbar {
@@ -223,49 +355,63 @@
 <body>
 
     <div class="shelf-container">
-        <div id="bigshelf"><div class="loading" style="color: red;">❌ ERROR: Failed to load magazine data.<br>Failed to fetch</div></div>
+        <div id="bigshelf">
+            <div class="loading">📚 LOADING MAGAZINES FROM ARCHIVE...</div>
+        </div>
+        <div id="noResults" class="no-results">No magazines match your search.</div>
     </div>
 
-    <div class="zoom-controls">
-        <button id="zoomOut">−</button>
-        <input type="range" id="zoomSlider" min="30" max="200" value="100" step="5">
-        <span class="zoom-value" id="zoomPercent">100%</span>
-        <button id="zoomIn">+</button>
+    <!-- Delicious Library Style Bottom Bar -->
+    <div class="bottom-bar">
+        <div class="bar-left">
+            <button id="addBtn" class="add-btn" title="Add Magazine">+</button>
+        </div>
+
+        <div class="bar-center">
+            <div class="search-box">
+                <svg class="search-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="7" cy="7" r="4.8"></circle>
+                    <path d="M10.8 10.8L14 14" stroke-linecap="round"></path>
+                </svg>
+                <input type="text" id="searchInput" placeholder="Search magazines…" autocomplete="off" spellcheck="false">
+                <span id="searchCount" class="search-count"></span>
+                <button id="searchClear" class="search-clear" title="Clear search (Esc)">×</button>
+            </div>
+        </div>
+
+        <div class="bar-right">
+            <span class="zoom-icon" title="Smaller covers">▫</span>
+            <input type="range" id="zoomSlider" min="30" max="200" value="80" step="5" title="Cover Zoom">
+            <span class="zoom-icon" title="Larger covers">◻</span>
+            <span class="zoom-value" id="zoomPercent">80%</span>
+        </div>
     </div>
 
     <script>
-        // ============================================================
-        // MODIFIED SCRIPT: Load magazine data from JSON URL instead of local magazines.json
-        // ============================================================
-
         let magazines = [];
         let currentZoom = 80;
         let itemsPerRow = 5;
+        let currentQuery = '';
 
         const jsonUrl = 'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/magazines.json';
-        
-        // Shelf background images for BETWEEN magazines (horizontal gaps)
+        const PLACEHOLDER_IMG = 'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/123x180.png';
+
         const shelfBgImages = [
             'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/bookshelfbg1.png',
             'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/bookshelfbg2.png',
             'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/bookshelfbg3.png'
         ];
 
-        // Shelf images for BETWEEN rows (vertical gaps - actual wooden shelves)
         const shelfImages = [
             'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/bookshelf1.png',
             'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/bookshelf2.png',
             'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/bookshelf3.png'
         ];
 
-        function getRandomImage(imagesArray) {
-            return imagesArray[Math.floor(Math.random() * imagesArray.length)];
-        }
-
         function loadSavedZoom() {
             const saved = localStorage.getItem('pczone-mag-zoom');
             if (saved && !isNaN(saved)) {
-                currentZoom = Math.min(200, Math.max(30, parseInt(saved)));
+                currentZoom = Math.min(200, Math.max(30, parseInt(saved, 10)));
                 document.getElementById('zoomSlider').value = currentZoom;
                 document.getElementById('zoomPercent').textContent = currentZoom + '%';
             }
@@ -280,21 +426,50 @@
             document.documentElement.style.setProperty('--zoom', zoomFactor);
             document.getElementById('zoomPercent').textContent = currentZoom + '%';
             saveZoom(currentZoom);
-            setTimeout(() => organizeIntoRows(), 50);
+            organizeIntoRows();
         }
 
         function preloadAllImages(items) {
             items.forEach(mag => {
-                if (mag.cover_url && mag.cover_url !== '#') {
+                if (mag.imageUrl && mag.imageUrl !== '#') {
                     const img = new Image();
-                    img.src = mag.cover_url;
+                    img.src = mag.imageUrl;
                 }
             });
-            // Preload shelf images too
-            [...shelfBgImages, ...shelfImages].forEach(url => {
+            [...shelfBgImages, ...shelfImages, PLACEHOLDER_IMG].forEach(url => {
                 const img = new Image();
                 img.src = url;
             });
+        }
+
+        // Fast instant search over pre-indexed searchText (multi-word AND match)
+        function filterMagazines(query) {
+            currentQuery = (query || '').trim().toLowerCase();
+            const terms = currentQuery ? currentQuery.split(/\s+/) : [];
+            const clearBtn = document.getElementById('searchClear');
+            const countEl = document.getElementById('searchCount');
+            const noResultsEl = document.getElementById('noResults');
+
+            clearBtn.classList.toggle('visible', currentQuery.length > 0);
+
+            let visibleCount = 0;
+            for (let i = 0; i < magazines.length; i++) {
+                const mag = magazines[i];
+                let match = true;
+                for (let t = 0; t < terms.length; t++) {
+                    if (!mag.searchText.includes(terms[t])) {
+                        match = false;
+                        break;
+                    }
+                }
+                mag.el.classList.toggle('hidden', !match);
+                if (match) visibleCount++;
+            }
+
+            countEl.textContent = currentQuery ? `${visibleCount}/${magazines.length}` : `${magazines.length}`;
+            noResultsEl.style.display = (magazines.length > 0 && visibleCount === 0) ? 'block' : 'none';
+
+            organizeIntoRows();
         }
 
         function organizeIntoRows() {
@@ -309,63 +484,52 @@
 
             itemsPerRow = Math.max(1, Math.floor((containerWidth - horizontalPadding) / itemTotalWidth));
 
-            const allItems = Array.from(shelf.querySelectorAll('.shelf-item'));
-            if (allItems.length === 0) return;
+            const visibleItems = magazines
+                .filter(m => !m.el.classList.contains('hidden'))
+                .map(m => m.el);
 
             const existingRows = shelf.querySelectorAll('.shelf-row');
             existingRows.forEach(row => row.remove());
 
-            for (let i = 0; i < allItems.length; i += itemsPerRow) {
-                const rowItems = allItems.slice(i, i + itemsPerRow);
+            if (visibleItems.length === 0) return;
+
+            const rowCount = Math.ceil(visibleItems.length / itemsPerRow);
+            let rowStyles = '';
+
+            for (let r = 0; r < rowCount; r++) {
+                const rowItems = visibleItems.slice(r * itemsPerRow, (r + 1) * itemsPerRow);
                 const rowDiv = document.createElement('div');
                 rowDiv.className = 'shelf-row';
+                rowDiv.dataset.row = r;
 
-                // Set random background for horizontal gaps (between magazines)
-                const randomBgImage = getRandomImage(shelfBgImages);
+                const randomBgImage = shelfBgImages[r % shelfBgImages.length];
                 rowDiv.style.backgroundImage = `url('${randomBgImage}')`;
-                rowDiv.style.backgroundSize = 'cover';
-                rowDiv.style.backgroundPosition = 'center';
-                rowDiv.style.backgroundRepeat = 'repeat';
 
-                rowItems.forEach(item => {
-                    rowDiv.appendChild(item);
-                });
+                for (let j = 0; j < rowItems.length; j++) {
+                    rowDiv.appendChild(rowItems[j]);
+                }
                 shelf.appendChild(rowDiv);
 
-                // Add random shelf image to the ::after pseudo-element for ALL rows (including last)
-                const randomShelfImage = getRandomImage(shelfImages);
-                const styleId = `shelf-style-${i}`;
-                let styleTag = document.getElementById(styleId);
-                if (!styleTag) {
-                    styleTag = document.createElement('style');
-                    styleTag.id = styleId;
-                    document.head.appendChild(styleTag);
-                }
-                // Removed :not(:last-child) so it applies to EVERY row
-                styleTag.textContent = `
-                    .shelf-row::after {
-                        background-image: url('${randomShelfImage}');
-                        background-size: cover;
-                        background-position: center;
-                        background-repeat: no-repeat;
-                    }
-                `;
+                const randomShelfImage = shelfImages[r % shelfImages.length];
+                rowStyles += `.shelf-row[data-row="${r}"]::after { background-image: url('${randomShelfImage}'); }\n`;
             }
+
+            let styleTag = document.getElementById('dynamic-shelf-styles');
+            if (!styleTag) {
+                styleTag = document.createElement('style');
+                styleTag.id = 'dynamic-shelf-styles';
+                document.head.appendChild(styleTag);
+            }
+            styleTag.textContent = rowStyles;
         }
 
-        // Helper: Extract a clean display title from the raw title or original_name
         function formatDisplayTitle(mag) {
-            // Try to use display_title if available, otherwise original_name, otherwise title
             let raw = mag.display_title || mag.original_name || mag.title || 'PC Zone Magazine';
-            // Remove file extension and clean up underscores/formatting for a nicer display
             raw = raw.replace(/\.pdf$/i, '').replace(/_/g, ' ');
-            // If the title still looks like a filename (contains double underscores etc), do a second cleanup
             if (raw.includes('  ')) raw = raw.replace(/\s+/g, ' ');
-            // Trim and return
             return raw.trim();
         }
 
-        // Main function to load magazines from the remote JSON
         async function loadMagazinesFromJson() {
             const shelfDiv = document.getElementById('bigshelf');
             shelfDiv.innerHTML = '<div class="loading">📚 LOADING MAGAZINES FROM ARCHIVE...</div>';
@@ -377,37 +541,25 @@
                 }
                 const data = await response.json();
 
-                // Validate data structure
                 if (!data || !data.success || !Array.isArray(data.history)) {
                     throw new Error('Invalid JSON structure: missing history array or success flag');
                 }
 
-                const rawHistory = data.history;
-                console.log(`Fetched ${rawHistory.length} magazine entries from JSON`);
-
-                // Use a Map to deduplicate by ID (since some entries might be duplicates in the provided data)
                 const uniqueMagMap = new Map();
-                for (const item of rawHistory) {
+                for (const item of data.history) {
                     if (item && item.id && !uniqueMagMap.has(item.id)) {
                         uniqueMagMap.set(item.id, item);
                     }
                 }
 
                 const uniqueMagazines = Array.from(uniqueMagMap.values());
-                console.log(`After deduplication: ${uniqueMagazines.length} unique magazines`);
 
-                // Transform the JSON data into the format expected by the shelf renderer
                 magazines = uniqueMagazines.map(mag => {
-                    // Build a clean, human-readable title
-                    let displayTitle = formatDisplayTitle(mag);
-                    // Also store the original title from JSON for reference
+                    const displayTitle = formatDisplayTitle(mag);
                     const originalTitle = mag.title || '';
-
-                    // Use thumbnail_url for cover image, fallback to placeholder
-                    const thumbnailUrl = mag.cover_url || 'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/pczonemag.png';
-
-                    // Use html_url as the link to open the flipbook
+                    const thumbnailUrl = mag.cover_url || PLACEHOLDER_IMG;
                     const pdfUrl = mag.html_url || '#';
+                    const searchText = `${displayTitle} ${originalTitle} ${mag.original_name || ''} ${mag.id || ''}`.toLowerCase();
 
                     return {
                         id: mag.id,
@@ -415,44 +567,35 @@
                         originalTitle: originalTitle,
                         imageUrl: thumbnailUrl,
                         pdfUrl: pdfUrl,
-                        rawData: mag
+                        rawData: mag,
+                        searchText: searchText,
+                        el: null
                     };
                 });
 
-                // Sort magazines by issue number if possible (look for numeric issue in title)
-                // This gives a more organized shelf: older issues first, newer later.
-                // But we'll do a smart sort: try to extract issue number from title or original_name
                 magazines.sort((a, b) => {
                     const getIssueNumber = (mag) => {
-                        // Search in title or originalTitle or original_name
-                        const text = `${mag.title} ${mag.originalTitle} ${mag.rawData.original_name || ''}`.toLowerCase();
+                        const text = mag.searchText;
                         const issueMatch = text.match(/issue[\s_-]*(\d+)/i);
                         if (issueMatch) return parseInt(issueMatch[1], 10);
-                        // Also try standalone numbers like "Issue 43" or "043"
                         const standaloneMatch = text.match(/\b(\d{2,3})\b/);
                         if (standaloneMatch && !text.includes('page') && !text.includes('count')) {
                             const num = parseInt(standaloneMatch[1], 10);
                             if (num > 0 && num < 300) return num;
                         }
-                        return 9999; // push to end if no number found
+                        return 9999;
                     };
                     const numA = getIssueNumber(a);
                     const numB = getIssueNumber(b);
                     if (numA !== numB) return numA - numB;
-                    // fallback to title comparison
                     return a.title.localeCompare(b.title);
                 });
 
-                console.log(`Processed ${magazines.length} magazines for shelf display`);
                 preloadAllImages(magazines);
-
-                // Clear loading message and render shelf items
                 shelfDiv.innerHTML = '';
 
-                const placeholderImg = 'https://raw.githubusercontent.com/igiteam/pdftoflipbook/refs/heads/main/pczonemag.png';
-
                 magazines.forEach((mag, index) => {
-                    const coverUrl = mag.imageUrl && mag.imageUrl !== '#' ? mag.imageUrl : placeholderImg;
+                    const coverUrl = mag.imageUrl && mag.imageUrl !== '#' ? mag.imageUrl : PLACEHOLDER_IMG;
                     const pdfUrl = mag.pdfUrl;
                     const displayTitle = mag.title || `Magazine ${index + 1}`;
 
@@ -462,20 +605,26 @@
                     const img = document.createElement('img');
                     img.className = 'shelf-cover';
                     img.loading = 'lazy';
-                    img.src = coverUrl;
+                    img.src = PLACEHOLDER_IMG;
+                    img.dataset.realSrc = coverUrl;
                     img.alt = displayTitle;
                     img.title = displayTitle;
 
+                    img.onload = () => {
+                        if (img.dataset.realSrc && img.src !== img.dataset.realSrc) {
+                            img.src = img.dataset.realSrc;
+                        }
+                    };
                     img.onerror = () => {
-                        img.src = placeholderImg;
+                        if (img.src !== PLACEHOLDER_IMG) {
+                            img.src = PLACEHOLDER_IMG;
+                        }
                     };
 
                     itemDiv.addEventListener('click', (e) => {
                         e.stopPropagation();
                         if (pdfUrl && pdfUrl !== '#') {
                             window.open(pdfUrl, '_blank');
-                        } else {
-                            console.warn(`No valid URL for ${displayTitle}`);
                         }
                     });
 
@@ -486,10 +635,11 @@
                     itemDiv.appendChild(img);
                     itemDiv.appendChild(nameSpan);
                     shelfDiv.appendChild(itemDiv);
+
+                    mag.el = itemDiv;
                 });
 
-                // After rendering items, organize them into rows and apply zoom
-                organizeIntoRows();
+                document.getElementById('searchCount').textContent = `${magazines.length}`;
                 loadSavedZoom();
                 applyZoom();
 
@@ -499,55 +649,62 @@
             }
         }
 
-        // Attach resize handler with debounce
         let resizeTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
-                if (magazines.length > 0) {
-                    organizeIntoRows();
-                }
-            }, 200);
+                if (magazines.length > 0) organizeIntoRows();
+            }, 120);
         });
 
-        // Zoom controls event binding
-        function bindZoomControls() {
+        function bindControls() {
             const zoomSlider = document.getElementById('zoomSlider');
-            if (zoomSlider) {
-                zoomSlider.addEventListener('input', (e) => {
-                    currentZoom = parseInt(e.target.value);
-                    applyZoom();
-                });
-            }
+            zoomSlider.addEventListener('input', (e) => {
+                currentZoom = parseInt(e.target.value, 10);
+                applyZoom();
+            });
 
-            const zoomInBtn = document.getElementById('zoomIn');
-            if (zoomInBtn) {
-                zoomInBtn.addEventListener('click', () => {
-                    currentZoom = Math.min(200, currentZoom + 10);
-                    zoomSlider.value = currentZoom;
-                    applyZoom();
-                });
-            }
+            const searchInput = document.getElementById('searchInput');
+            const searchClear = document.getElementById('searchClear');
 
-            const zoomOutBtn = document.getElementById('zoomOut');
-            if (zoomOutBtn) {
-                zoomOutBtn.addEventListener('click', () => {
-                    currentZoom = Math.max(30, currentZoom - 10);
-                    zoomSlider.value = currentZoom;
-                    applyZoom();
-                });
-            }
+            searchInput.addEventListener('input', (e) => {
+                filterMagazines(e.target.value);
+            });
+
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    searchInput.value = '';
+                    filterMagazines('');
+                    searchInput.blur();
+                }
+            });
+
+            searchClear.addEventListener('click', () => {
+                searchInput.value = '';
+                filterMagazines('');
+                searchInput.focus();
+            });
+
+            window.addEventListener('keydown', (e) => {
+                if ((e.key === '/' && document.activeElement !== searchInput) ||
+                    ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'f')) {
+                    e.preventDefault();
+                    searchInput.focus();
+                    searchInput.select();
+                }
+            });
+
+            document.getElementById('addBtn').addEventListener('click', () => {
+                window.open('https://github.com/igiteam/pdftoflipbook', '_blank');
+            });
         }
 
-        // Initialize the entire page: load JSON and set up controls
         async function init() {
-            bindZoomControls();
+            bindControls();
             await loadMagazinesFromJson();
         }
 
-        // Start the application
         init();
     </script>
-
-
-</body></html>
+</body>
+</html>
